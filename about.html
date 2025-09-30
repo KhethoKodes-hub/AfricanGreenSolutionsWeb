@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - African Green Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #ffc107;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(30, 126, 52, 0.95) 0%, rgba(40, 167, 69, 0.95) 100%);
+            padding: 150px 2rem 80px;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Content */
+        .about-content {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 2rem;
+        }
+
+        .about-section {
+            margin-bottom: 80px;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            color: #1e7e34;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #28a745, #ffc107);
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Mission & Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mission-card, .vision-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #28a745;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .mission-card h3, .vision-card h3 {
+            color: #1e7e34;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #28a745;
+            text-align: center;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
+            border-top-color: #ffc107;
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .value-card h3 {
+            color: #1e7e34;
+            margin-bottom: 1rem;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            counter-increment: step-counter;
+        }
+
+        .process-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
+        }
+
+        .process-step h3 {
+            color: #1e7e34;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            padding: 80px 2rem;
+            text-align: center;
+            color: white;
+            border-radius: 15px;
+            margin: 80px 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #ffc107;
+            color: #1e7e34;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
+            background: #ffcd38;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .about-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">African Green Solutions</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" style="color: #ffc107;">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>About African Green Solutions</h1>
+        <p>Pioneering renewable energy solutions for a sustainable African future</p>
+    </section>
+
+    <section class="about-content">
+        <div class="about-section">
+            <h2>Our Story</h2>
+            <p>African Green Solutions is a pioneering renewable energy company specializing in the manufacturing and installation of anaerobic digestors for biogas production. Founded with a vision to transform Africa's energy landscape, we are committed to providing environmentally friendly, long-term solutions for managing organic waste while addressing the continent's growing demand for sustainable energy.</p>
+            <p>Based in Vaal, Gauteng, we are a proudly South African, limited liability company dedicated to creating a cleaner and greener future through innovative biogas technology. Our team brings together expertise in renewable energy, engineering, and environmental management to deliver cutting-edge solutions that benefit both people and the planet.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Mission & Vision</h2>
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h3>Our Mission</h3>
+                    <p>To provide innovative, sustainable biogas solutions that transform organic waste into clean energy, reducing environmental impact while creating economic opportunities for communities across Africa.</p>
+                </div>
+                <div class="vision-card">
+                    <h3>Our Vision</h3>
+                    <p>To be Africa's leading provider of renewable energy solutions, powering a greener future where sustainable energy is accessible to all and organic waste is valued as a resource rather than a problem.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <span class="value-icon">🌱</span>
+                    <h3>Sustainability</h3>
+                    <p>We are committed to solutions that protect our environment and promote long-term ecological balance.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">💡</span>
+                    <h3>Innovation</h3>
+                    <p>We continuously develop and implement cutting-edge technologies to improve our biogas solutions.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🤝</span>
+                    <h3>Partnership</h3>
+                    <p>We work collaboratively with communities, businesses, and governments to achieve shared sustainability goals.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🔬</span>
+                    <h3>Excellence</h3>
+                    <p>We maintain the highest standards in design, installation, and maintenance of all our biogas systems.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Technology</h2>
+            <p>At the heart of our operations is anaerobic digestion technology - a natural process where microorganisms break down organic matter in the absence of oxygen. This process produces biogas, a renewable energy source primarily composed of methane, which can be used for heating, cooking, and electricity generation.</p>
+            <p>Our custom-designed anaerobic digestors are engineered to efficiently process various organic waste streams, including agricultural waste, food waste, and animal manure. The by-product of this process is a nutrient-rich organic fertilizer that completes the cycle of sustainability.</p>
+            
+            <h3 style="margin-top: 2rem; color: #1e7e34;">The Biogas Process</h3>
+            <div class="process-steps">
+                <div class="process-step">
+                    <h3>Waste Collection</h3>
+                    <p>Organic waste materials are collected from various sources including farms, food processing facilities, and households.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Anaerobic Digestion</h3>
+                    <p>Waste is processed in our sealed digestors where microorganisms break it down in oxygen-free conditions.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Biogas Production</h3>
+                    <p>The digestion process releases biogas, primarily methane, which is captured and stored for energy use.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Energy Generation</h3>
+                    <p>Biogas is used for heating, cooking, or converted to electricity through generators.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Fertilizer Production</h3>
+                    <p>The remaining digestate is processed into high-quality organic fertilizer for agricultural use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Power a Greener Future?</h2>
+        <p>Join us in our mission to transform organic waste into clean, renewable energy. Contact us today to learn how African Green Solutions can help your business or community.</p>
+        <a href="contact.html" class="cta-button">Get In Touch</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
+        <p>Powering a Greener Future</p>
+    </footer>
+</body>
+</html>

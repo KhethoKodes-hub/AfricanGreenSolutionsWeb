@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - African Green Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #ffc107;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(30, 126, 52, 0.95) 0%, rgba(40, 167, 69, 0.95) 100%);
+            padding: 150px 2rem 80px;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Overview */
+        .services-overview {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 2rem;
+        }
+
+        .services-overview h2 {
+            font-size: 2.5rem;
+            color: #1e7e34;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .services-overview h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #28a745, #ffc107);
+        }
+
+        .services-overview p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
+        }
+
+        .service-icon {
+            height: 120px;
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            color: #1e7e34;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .service-link {
+            display: inline-block;
+            color: #1e7e34;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .service-link:hover {
+            color: #28a745;
+            border-bottom: 2px solid #28a745;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            padding: 80px 2rem;
+            color: white;
+            margin: 80px 0;
+        }
+
+        .process-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .process-steps {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step-counter;
+        }
+
+        .process-step {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+            border-color: #ffc107;
+        }
+
+        .process-step::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #ffc107;
+            color: #1e7e34;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Industries Section */
+        .industries-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 2rem;
+        }
+
+        .industries-section h2 {
+            font-size: 2.5rem;
+            color: #1e7e34;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .industries-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #28a745, #ffc107);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .industry-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid #28a745;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
+            border-top-color: #ffc107;
+        }
+
+        .industry-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .industry-card h3 {
+            color: #1e7e34;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin: 80px 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #1e7e34;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #555;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 126, 52, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(30, 126, 52, 0.5);
+            background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .services-overview h2, .industries-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">African Green Solutions</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" style="color: #ffc107;">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Our Services</h1>
+        <p>Comprehensive biogas solutions tailored to your specific needs and waste streams</p>
+    </section>
+
+    <section class="services-overview">
+        <h2>Our Comprehensive Services</h2>
+        <p>African Green Solutions offers a complete range of biogas services, from initial feasibility studies to ongoing maintenance. Our expertise ensures that your biogas project delivers maximum efficiency, reliability, and return on investment.</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <div class="service-content">
+                    <h3>Anaerobic Digestor Design & Installation</h3>
+                    <p>Custom-designed digestors tailored to your specific needs and waste streams. Our engineering team creates optimized solutions for maximum biogas production.</p>
+                    <ul class="service-features">
+                        <li>Custom design based on waste composition</li>
+                        <li>Site-specific engineering solutions</li>
+                        <li>Professional installation by certified technicians</li>
+                        <li>Quality materials and construction</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Request a Consultation →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <div class="service-content">
+                    <h3>Maintenance of Digestors</h3>
+                    <p>Comprehensive maintenance services to ensure optimal performance and longevity of your biogas system.</p>
+                    <ul class="service-features">
+                        <li>Regular system inspections and monitoring</li>
+                        <li>Preventive maintenance schedules</li>
+                        <li>Emergency repair services</li>
+                        <li>Performance optimization</li>
+                        <li>Spare parts and component replacement</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Schedule Maintenance →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <div class="service-content">
+                    <h3>Pre-construction Feasibility Studies</h3>
+                    <p>Data-driven analysis to determine the best solution for your project and ensure its economic viability.</p>
+                    <ul class="service-features">
+                        <li>Waste characterization and analysis</li>
+                        <li>Biogas potential assessment</li>
+                        <li>Economic feasibility analysis</li>
+                        <li>Regulatory compliance review</li>
+                        <li>Site suitability evaluation</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Request a Study →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏭</div>
+                <div class="service-content">
+                    <h3>Construction of Biogas Facilities</h3>
+                    <p>End-to-end construction of complete biogas production facilities, from groundwork to commissioning.</p>
+                    <ul class="service-features">
+                        <li>Turnkey project management</li>
+                        <li>Civil works and infrastructure</li>
+                        <li>Mechanical and electrical installation</li>
+                        <li>Gas storage and distribution systems</li>
+                        <li>Commissioning and handover</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Discuss Your Project →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <div class="service-content">
+                    <h3>Supply of Biogas & Fertilizer</h3>
+                    <p>Providing clean energy and organic fertilizer by-products to support your operations and create additional revenue streams.</p>
+                    <ul class="service-features">
+                        <li>Biogas purification and upgrading</li>
+                        <li>Energy generation solutions</li>
+                        <li>Organic fertilizer processing</li>
+                        <li>Product quality testing</li>
+                        <li>Distribution and marketing support</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Inquire About Products →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <div class="service-content">
+                    <h3>Consulting & Training</h3>
+                    <p>Expert consulting services and comprehensive training programs to maximize the benefits of your biogas investment.</p>
+                    <ul class="service-features">
+                        <li>Technical consulting services</li>
+                        <li>Operator training programs</li>
+                        <li>Safety and compliance training</li>
+                        <li>Performance monitoring setup</li>
+                        <li>Ongoing technical support</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Learn About Training →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <h2>Our Project Process</h2>
+        <div class="process-steps">
+            <div class="process-step">
+                <h3>Consultation & Assessment</h3>
+                <p>We begin with a detailed assessment of your needs, waste streams, and site conditions.</p>
+            </div>
+            <div class="process-step">
+                <h3>Feasibility Study</h3>
+                <p>Comprehensive analysis to determine project viability and optimal system design.</p>
+            </div>
+            <div class="process-step">
+                <h3>Custom Design</h3>
+                <p>Our engineers create a tailored solution optimized for your specific requirements.</p>
+            </div>
+            <div class="process-step">
+                <h3>Installation</h3>
+                <p>Professional installation by our certified technicians with minimal disruption.</p>
+            </div>
+            <div class="process-step">
+                <h3>Commissioning</h3>
+                <p>System testing, optimization, and handover with comprehensive documentation.</p>
+            </div>
+            <div class="process-step">
+                <h3>Ongoing Support</h3>
+                <p>Continuous maintenance, monitoring, and support to ensure optimal performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="industries-section">
+        <h2>Industries We Serve</h2>
+        <p>Our biogas solutions are tailored to meet the specific needs of various industries across Africa.</p>
+        
+        <div class="industries-grid">
+            <div class="industry-card">
+                <span class="industry-icon">🏭</span>
+                <h3>Agriculture</h3>
+                <p>Farm waste management and energy solutions for agricultural operations.</p>
+            </div>
+            <div class="industry-card">
+                <span class="industry-icon">🍎</span>
+                <h3>Food Processing</h3>
+                <p>Organic waste conversion for food manufacturing and processing facilities.</p>
+            </div>
+            <div class="industry-card">
+                <span class="industry-icon">🏥</span>
+                <h3>Healthcare</h3>
+                <p>Waste management and energy solutions for hospitals and healthcare facilities.</p>
+            </div>
+            <div class="industry-card">
+                <span class="industry-icon">🏨</span>
+                <h3>Hospitality</h3>
+                <p>Food waste conversion and energy generation for hotels and restaurants.</p>
+            </div>
+            <div class="industry-card">
+                <span class="industry-icon">🏢</span>
+                <h3>Municipal</h3>
+                <p>Community-scale biogas solutions for municipal waste management.</p>
+            </div>
+            <div class="industry-card">
+                <span class="industry-icon">🏫</span>
+                <h3>Educational</h3>
+                <p>Biogas systems for schools, universities, and educational institutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Transform Your Waste into Energy?</h2>
+        <p>Contact us today to discuss how our biogas solutions can benefit your business or community. Our experts are ready to provide a customized proposal based on your specific needs.</p>
+        <a href="contact.html" class="cta-button">Get Started Today</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
+        <p>Powering a Greener Future</p>
+    </footer>
+</body>
+</html>
