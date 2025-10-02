@@ -16,6 +16,7 @@
             line-height: 1.6;
             color: #2d3436;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* Header & Navigation */
@@ -27,6 +28,13 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(30, 126, 52, 0.98);
+            backdrop-filter: blur(10px);
         }
 
         nav {
@@ -44,6 +52,13 @@
             color: white;
             text-transform: uppercase;
             letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
         }
 
         .nav-links {
@@ -76,26 +91,50 @@
             width: 100%;
         }
 
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
         /* Page Header */
         .page-header {
             background: linear-gradient(135deg, rgba(30, 126, 52, 0.95) 0%, rgba(40, 167, 69, 0.95) 100%);
-            padding: 150px 2rem 80px;
+            padding: 180px 2rem 100px;
             text-align: center;
             color: white;
             margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231e7e34" width="1200" height="600"/><circle cx="100" cy="100" r="50" fill="%2328a745" opacity="0.3"/><circle cx="900" cy="400" r="80" fill="%2328a745" opacity="0.3"/><circle cx="1100" cy="200" r="60" fill="%2320c997" opacity="0.3"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
         }
 
         .page-header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .page-header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
             margin: 0 auto;
             animation: fadeInUp 1.2s ease;
+            position: relative;
         }
 
         @keyframes fadeInUp {
@@ -112,7 +151,7 @@
         /* Contact Section */
         .contact-section {
             max-width: 1200px;
-            margin: 80px auto;
+            margin: 100px auto;
             padding: 0 2rem;
         }
 
@@ -124,9 +163,9 @@
         }
 
         .contact-info h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #1e7e34;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             position: relative;
             display: inline-block;
         }
@@ -134,55 +173,67 @@
         .contact-info h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 0;
-            width: 60%;
-            height: 4px;
+            width: 80px;
+            height: 5px;
             background: linear-gradient(90deg, #28a745, #ffc107);
+            border-radius: 5px;
         }
 
         .contact-info p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
             color: #555;
+            line-height: 1.7;
         }
 
         .contact-details {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
             background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
         }
 
         .contact-item:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
+            background: white;
+            border-color: #28a745;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, #28a745, #20c997);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            margin-right: 1.5rem;
             flex-shrink: 0;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: white;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #ffc107, #ffcd38);
         }
 
         .contact-text h3 {
             color: #1e7e34;
             margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
 
         .contact-text p {
@@ -192,14 +243,21 @@
 
         .business-hours {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 2.5rem;
+            border-radius: 20px;
             border-left: 5px solid #28a745;
+            transition: all 0.3s ease;
+        }
+
+        .business-hours:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .business-hours h3 {
             color: #1e7e34;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
         .hours-list {
@@ -207,22 +265,42 @@
         }
 
         .hours-list li {
-            padding: 0.5rem 0;
+            padding: 0.8rem 0;
             border-bottom: 1px solid #dee2e6;
             display: flex;
             justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .hours-list li:hover {
+            background: rgba(40, 167, 69, 0.05);
+            padding-left: 0.5rem;
         }
 
         .hours-list li:last-child {
             border-bottom: none;
         }
 
+        .emergency-contact {
+            background: linear-gradient(135deg, #ffc107, #ffcd38);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+            color: #1e7e34;
+        }
+
+        .emergency-contact h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
         /* Contact Form */
         .contact-form-container {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
@@ -238,76 +316,119 @@
         }
 
         .contact-form h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #1e7e34;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             text-align: center;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .form-group.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: #1e7e34;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 1rem 1.2rem;
             border: 2px solid #e9ecef;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
             font-family: inherit;
+            background: #f8f9fa;
         }
 
         .form-control:focus {
             outline: none;
             border-color: #28a745;
+            background: white;
             box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
         }
 
         textarea.form-control {
             resize: vertical;
-            min-height: 120px;
+            min-height: 140px;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 1.2rem;
             background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(30, 126, 52, 0.3);
+            box-shadow: 0 8px 25px rgba(30, 126, 52, 0.4);
             background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+        }
+
+        .form-success {
+            display: none;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
         }
 
         /* Map Section */
         .map-section {
-            margin: 80px 0;
+            margin: 100px 0;
         }
 
         .map-container {
-            height: 400px;
+            height: 500px;
             background: #f8f9fa;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             position: relative;
         }
 
@@ -320,26 +441,48 @@
             justify-content: center;
             color: #6c757d;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(30, 126, 52, 0.05)"/></svg>');
+            background-size: cover;
         }
 
         .map-placeholder .map-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
             opacity: 0.7;
+        }
+
+        .map-placeholder h3 {
+            margin-bottom: 1rem;
+            color: #1e7e34;
+        }
+
+        .map-placeholder p {
+            margin-bottom: 0.5rem;
         }
 
         /* FAQ Section */
         .faq-section {
             max-width: 1200px;
-            margin: 80px auto;
+            margin: 100px auto;
             padding: 0 2rem;
         }
 
         .faq-section h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #1e7e34;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             position: relative;
             display: inline-block;
             text-align: center;
@@ -349,34 +492,47 @@
         .faq-section h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60%;
-            height: 4px;
+            width: 80px;
+            height: 5px;
             background: linear-gradient(90deg, #28a745, #ffc107);
+            border-radius: 5px;
+        }
+
+        .faq-section p {
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+            color: #555;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .faq-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 3rem auto 0;
         }
 
         .faq-item {
             background: white;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             overflow: hidden;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
         .faq-item:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-color: rgba(40, 167, 69, 0.2);
         }
 
         .faq-question {
-            padding: 1.5rem;
+            padding: 2rem;
             background: #f8f9fa;
             cursor: pointer;
             display: flex;
@@ -385,6 +541,7 @@
             font-weight: 600;
             color: #1e7e34;
             transition: all 0.3s ease;
+            font-size: 1.1rem;
         }
 
         .faq-question:hover {
@@ -392,24 +549,131 @@
         }
 
         .faq-answer {
-            padding: 0 1.5rem;
+            padding: 0 2rem;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .faq-answer.active {
-            padding: 1.5rem;
+            padding: 2rem;
             max-height: 500px;
         }
 
         .faq-toggle {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             transition: transform 0.3s ease;
+            color: #28a745;
         }
 
         .faq-toggle.active {
             transform: rotate(45deg);
+        }
+
+        /* Team Contact */
+        .team-contact {
+            background: #f8f9fa;
+            padding: 100px 2rem;
+            margin: 100px -2rem;
+        }
+
+        .team-contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-contact-container h2 {
+            font-size: 2.8rem;
+            color: #1e7e34;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .team-contact-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, #28a745, #ffc107);
+            border-radius: 5px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-member-contact {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1e7e34, #28a745, #ffc107);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member-contact:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-member-contact:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .member-avatar-contact {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .team-member-contact:hover .member-avatar-contact {
+            transform: scale(1.1);
+        }
+
+        .team-member-contact h3 {
+            color: #1e7e34;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member-contact .role {
+            color: #28a745;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .team-member-contact .contact-detail {
+            color: #555;
+            margin-bottom: 0.5rem;
         }
 
         /* Footer */
@@ -417,25 +681,68 @@
             background: #1a1a1a;
             color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
         }
 
-        footer p {
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: #ffc107;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffc107;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+        }
+
+        .footer-bottom p {
             margin-bottom: 0.5rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .page-header p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .nav-links {
-                gap: 1rem;
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
             }
 
             .contact-container {
@@ -444,21 +751,33 @@
             }
 
             .contact-info h2, .faq-section h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+
+            .contact-form-container {
+                padding: 2rem;
+            }
+
+            .map-container {
+                height: 400px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
-            <div class="logo">African Green Solutions</div>
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                African Green Solutions
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html" style="color: #ffc107;">Contact</a></li>
             </ul>
+            <div class="mobile-menu">☰</div>
         </nav>
     </header>
 
@@ -471,7 +790,7 @@
         <div class="contact-container">
             <div class="contact-info">
                 <h2>Get In Touch</h2>
-                <p>We're here to answer any questions you may have about our biogas solutions. Reach out to us and we'll respond as soon as we can.</p>
+                <p>We're here to answer any questions you may have about our biogas solutions. Reach out to us and we'll respond as soon as we can. Let's work together to create a sustainable energy future.</p>
                 
                 <div class="contact-details">
                     <div class="contact-item">
@@ -480,6 +799,7 @@
                             <h3>Phone</h3>
                             <p>083 892 4162</p>
                             <p>Mon-Fri, 8:00 AM - 5:00 PM</p>
+                            <p>Emergency: 24/7 Support Available</p>
                         </div>
                     </div>
                     
@@ -488,6 +808,7 @@
                         <div class="contact-text">
                             <h3>Email</h3>
                             <p>africangreensolutions@gmail.com</p>
+                            <p>Technical Support: support@africangreensolutions.co.za</p>
                             <p>We'll respond within 24 hours</p>
                         </div>
                     </div>
@@ -497,6 +818,7 @@
                         <div class="contact-text">
                             <h3>Address</h3>
                             <p>252 Wellington Street<br>Ironside, Gauteng<br>1984</p>
+                            <p>Free site assessments available in Gauteng and surrounding areas</p>
                         </div>
                     </div>
                 </div>
@@ -510,10 +832,16 @@
                         <li><span>Emergency Services:</span> <span>24/7</span></li>
                     </ul>
                 </div>
+
+                <div class="emergency-contact">
+                    <h4>🚨 Emergency Service Line</h4>
+                    <p>Available 24/7 for urgent biogas system issues</p>
+                    <p><strong>083 892 4162</strong></p>
+                </div>
             </div>
             
             <div class="contact-form-container">
-                <form class="contact-form">
+                <form class="contact-form" id="contactForm">
                     <h2>Send Us a Message</h2>
                     
                     <div class="form-group">
@@ -532,6 +860,11 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" class="form-control" placeholder="Enter your company name">
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="service">Service Interested In</label>
                         <select id="service" class="form-control">
                             <option value="">Select a service</option>
@@ -546,12 +879,61 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="urgency">Urgency Level</label>
+                        <select id="urgency" class="form-control">
+                            <option value="">Select urgency</option>
+                            <option value="low">Low - General Inquiry</option>
+                            <option value="medium">Medium - Planning Stage</option>
+                            <option value="high">High - Ready to Start</option>
+                            <option value="emergency">Emergency - Urgent Issue</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="message">Message *</label>
-                        <textarea id="message" class="form-control" placeholder="Tell us about your project or inquiry..." required></textarea>
+                        <textarea id="message" class="form-control" placeholder="Tell us about your project, specific requirements, or any questions you have..." required></textarea>
                     </div>
                     
                     <button type="submit" class="submit-btn">Send Message</button>
                 </form>
+
+                <div class="form-success" id="formSuccess">
+                    <h3>✅ Message Sent Successfully!</h3>
+                    <p>Thank you for contacting African Green Solutions. We have received your message and will get back to you within 24 hours.</p>
+                    <p>For urgent matters, please call us at <strong>083 892 4162</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-contact">
+        <div class="team-contact-container">
+            <h2>Contact Our Team Directly</h2>
+            <div class="team-grid">
+                <div class="team-member-contact">
+                    <div class="member-avatar-contact">BM</div>
+                    <h3>Mr. Bokang Masango</h3>
+                    <p class="role">Chief Executive Officer</p>
+                    <p class="contact-detail">📧 bokang@africangreensolutions.co.za</p>
+                    <p class="contact-detail">📞 083 892 4162</p>
+                    <p>Specializes in project strategy and business development</p>
+                </div>
+                <div class="team-member-contact">
+                    <div class="member-avatar-contact">LM</div>
+                    <h3>Mr. Lucky Motshele</h3>
+                    <p class="role">Chief Operations Officer</p>
+                    <p class="contact-detail">📧 lucky@africangreensolutions.co.za</p>
+                    <p class="contact-detail">📞 083 892 4162</p>
+                    <p>Oversees installation, maintenance, and technical operations</p>
+                </div>
+                <div class="team-member-contact">
+                    <div class="member-avatar-contact">NN</div>
+                    <h3>Ms. Nhlanhla Nyambose</h3>
+                    <p class="role">Chief Financial Officer</p>
+                    <p class="contact-detail">📧 nhlanhla@africangreensolutions.co.za</p>
+                    <p class="contact-detail">📞 083 892 4162</p>
+                    <p>Manages project financing, quotes, and financial planning</p>
+                </div>
             </div>
         </div>
     </section>
@@ -562,51 +944,53 @@
                 <div class="map-icon">🗺️</div>
                 <h3>Our Location</h3>
                 <p>252 Wellington Street, Ironside, Gauteng, 1984</p>
-                <p><small>Interactive map would be integrated here</small></p>
+                <p><strong>Service Areas:</strong> Gauteng, Limpopo, Mpumalanga, North West</p>
+                <p><small>Interactive map would be integrated here with Google Maps API</small></p>
             </div>
         </div>
     </section>
 
     <section class="faq-section">
         <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to common questions about our services and contact process</p>
         <div class="faq-container">
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>How long does it take to install a biogas system?</span>
+                    <span>How quickly can you respond to my inquiry?</span>
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>The installation timeline varies depending on the scale and complexity of the system. Small-scale residential systems can be installed in 1-2 weeks, while larger commercial or agricultural systems may take 4-8 weeks from initial assessment to full commissioning.</p>
+                    <p>We typically respond to all inquiries within 24 hours during business days. For urgent matters or emergency service requests, we provide 24/7 support and aim to respond within 2 hours. You can call our emergency line at 083 892 4162 for immediate assistance.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>What type of waste can be used in your biogas systems?</span>
+                    <span>Do you offer free consultations or site assessments?</span>
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Our systems can process various organic waste streams including agricultural waste (crop residues, animal manure), food waste, garden waste, and certain industrial organic by-products. During our feasibility study, we'll analyze your specific waste streams to determine the optimal solution.</p>
+                    <p>Yes, we offer complimentary initial consultations and site assessments for qualified projects in our service areas (Gauteng and surrounding provinces). During the assessment, we'll evaluate your waste streams, energy needs, and site conditions to provide preliminary recommendations.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>Do you offer maintenance contracts?</span>
+                    <span>What information should I prepare before contacting you?</span>
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Yes, we offer comprehensive maintenance contracts tailored to your specific system and usage patterns. Our maintenance plans include regular inspections, performance monitoring, and emergency support to ensure your biogas system operates at peak efficiency.</p>
+                    <p>To help us provide the most accurate advice, please have the following information ready: type and quantity of organic waste available, current energy consumption or requirements, available space for installation, budget considerations, and any specific goals or challenges you're facing.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>What is the typical return on investment for a biogas system?</span>
+                    <span>What is your service area?</span>
                     <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>ROI varies based on factors like system size, waste availability, energy costs, and potential revenue from fertilizer by-products. Most commercial systems achieve payback within 3-5 years. We provide detailed financial analysis during our feasibility studies to help you understand the specific ROI for your project.</p>
+                    <p>We primarily serve Gauteng and surrounding provinces including Limpopo, Mpumalanga, and North West. For larger projects, we may consider installations in other parts of South Africa. Contact us to discuss your specific location and project requirements.</p>
                 </div>
             </div>
             
@@ -619,15 +1003,92 @@
                     <p>We serve both residential and commercial clients. Our solutions range from small-scale household systems to large industrial facilities. We'll design a system that matches your specific needs, whether you're a homeowner looking to reduce energy costs or a business seeking sustainable waste management solutions.</p>
                 </div>
             </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the typical timeline for a biogas project?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Project timelines vary based on scale and complexity. Small residential systems can be installed in 1-2 weeks, while larger commercial projects typically take 4-12 weeks from initial assessment to commissioning. This includes feasibility studies, design, permitting, installation, and commissioning phases.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
-        <p>Powering a Greener Future</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>African Green Solutions</h3>
+                <p>Pioneering renewable energy solutions for a sustainable African future through innovative biogas technology.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Digestor Design & Installation</a></li>
+                    <li><a href="services.html">Maintenance Services</a></li>
+                    <li><a href="services.html">Feasibility Studies</a></li>
+                    <li><a href="services.html">Biogas Supply</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li>📞 083 892 4162</li>
+                    <li>📧 africangreensolutions@gmail.com</li>
+                    <li>📍 252 Wellington Street, Ironside, Gauteng, 1984</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
+            <p>Powering a Greener Future</p>
+        </div>
     </footer>
 
     <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                // In a real implementation, you would send the form data to a server
+                document.getElementById('formSuccess').classList.add('show');
+                this.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('formSuccess').classList.remove('show');
+                }, 5000);
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
         // FAQ Toggle Functionality
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
@@ -648,22 +1109,50 @@
             });
         });
 
-        // Form Submission (basic validation)
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            if (name && email && message) {
-                // In a real implementation, you would send the form data to a server
-                alert('Thank you for your message! We will get back to you soon.');
-                this.reset();
-            } else {
-                alert('Please fill in all required fields.');
-            }
+        // Form field animations
+        const formObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const formGroups = document.querySelectorAll('.form-group');
+                    formGroups.forEach((group, index) => {
+                        setTimeout(() => {
+                            group.classList.add('visible');
+                        }, index * 100);
+                    });
+                    formObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        formObserver.observe(document.querySelector('.contact-form-container'));
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('.nav-links').style.display = 'none';
+                    }
+                }
+            });
         });
     </script>
 </body>
