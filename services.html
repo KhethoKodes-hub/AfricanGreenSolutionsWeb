@@ -3,1290 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - African Green Solutions</title>
-        <link href="assets/AfricanGreenLogo.png" rel="icon" type="image/png">
-
+    <title>Our Services — African Green Solutions</title>
+    <link href="assets/AfricanGreenLogo.png" rel="icon" type="image/png">
+    <!-- Google Fonts + Tailwind + core styling (matching index & about) -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        leaf: { 50: '#f0faf2', 100: '#d6f5dc', 200: '#a8e9b4', 300: '#66d47e', 400: '#2db84a', 500: '#1e9e38', 600: '#177d2b', 700: '#126122', 800: '#0d461a', 900: '#072e10' },
+                        amber: { 400: '#f5b800', 500: '#d9a200', 600: '#b88800' },
+                    },
+                    backgroundImage: {
+                        'mesh-services': "radial-gradient(ellipse at 20% 30%, #1e9e38 0%, transparent 45%), radial-gradient(ellipse at 90% 70%, #0d461a 0%, transparent 55%), #07200f",
+                    },
+                    animation: {
+                        float: 'float 6s ease-in-out infinite',
+                        pulseglow: 'pulseglow 3s ease-in-out infinite',
+                        reveal: 'reveal 0.8s ease forwards',
+                        spinSlow: 'spinSlow 18s linear infinite',
+                    },
+                    keyframes: {
+                        float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-12px)' } },
+                        pulseglow: { '0%,100%': { opacity: '0.5' }, '50%': { opacity: '1', transform: 'scale(1.05)' } },
+                        reveal: { from: { opacity: '0', transform: 'translateY(40px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+                        spinSlow: { from: { transform: 'rotate(0deg)' }, to: { transform: 'rotate(360deg)' } },
+                    }
+                }
+            }
+        };
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #2d3436;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            padding: 0.5rem 0;
-            background: rgba(30, 126, 52, 0.98);
-            backdrop-filter: blur(10px);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            font-size: 1.8rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: #ffc107;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Page Header */
-        .page-header {
-            background: linear-gradient(135deg, rgba(30, 126, 52, 0.95) 0%, rgba(40, 167, 69, 0.95) 100%);
-            padding: 180px 2rem 100px;
-            text-align: center;
-            color: white;
-            margin-top: 70px;
-            position: relative;
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: #07200f; color: #f0f9f0; overflow-x: hidden; }
+        
+        /* Glass & nav (matching index) */
+        .glass { background: rgba(255,255,255,0.07); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-dark { background: rgba(7,32,15,0.7); backdrop-filter: blur(20px); border: 1px solid rgba(45,184,74,0.2); }
+        .glass-leaf { background: rgba(30,158,56,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(45,184,74,0.25); }
+        
+        #nav { transition: all 0.4s ease; background: transparent; }
+        #nav.scrolled { background: rgba(7,32,15,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(45,184,74,0.2); }
+        .nav-link { position: relative; transition: color 0.3s; }
+        .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:linear-gradient(90deg,#2db84a,#f5b800); transition:width 0.35s ease; border-radius:2px; }
+        .nav-link:hover::after { width:100%; }
+        .nav-link:hover { color: #66d47e; }
+        
+        .btn-glow { background: linear-gradient(135deg, #2db84a 0%, #1e9e38 100%); transition: all 0.35s ease; }
+        .btn-glow:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 30px rgba(45,184,74,0.5); }
+        
+        /* service cards (new style) */
+        .service-card-enhanced {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
         }
-
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231e7e34" width="1200" height="600"/><circle cx="100" cy="100" r="50" fill="%2328a745" opacity="0.3"/><circle cx="900" cy="400" r="80" fill="%2328a745" opacity="0.3"/><circle cx="1100" cy="200" r="60" fill="%2320c997" opacity="0.3"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
-        }
-
-        .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            position: relative;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .page-header p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeInUp 1.2s ease;
-            position: relative;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Services Overview */
-        .services-overview {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 2rem;
-        }
-
-        .services-overview h2 {
-            font-size: 2.8rem;
-            color: #1e7e34;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .services-overview h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(90deg, #28a745, #ffc107);
-            border-radius: 5px;
-        }
-
-        .services-overview p {
-            font-size: 1.15rem;
-            margin-bottom: 2rem;
-            color: #555;
-            line-height: 1.7;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .service-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .service-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(40, 167, 69, 0.2);
-        }
-
-        .service-icon {
-            height: 140px;
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-icon::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .service-card:hover .service-icon::after {
-            transform: translateX(100%);
-        }
-
-        .service-content {
-            padding: 2.5rem 2rem;
-        }
-
-        .service-content h3 {
-            color: #1e7e34;
-            margin-bottom: 1.2rem;
-            font-size: 1.6rem;
-        }
-
-        .service-content p {
-            margin-bottom: 1.8rem;
-            color: #555;
-            line-height: 1.7;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .service-features li {
-            padding: 0.6rem 0;
-            position: relative;
-            padding-left: 2rem;
+        .service-card-enhanced:hover { transform: translateY(-12px); background: rgba(30,158,56,0.08); border-color: rgba(45,184,74,0.5); box-shadow: 0 30px 50px rgba(0,0,0,0.4); }
+        .service-icon-bg { background: linear-gradient(135deg, #1e9e38, #0d461a); transition: transform 0.4s ease; }
+        .service-card-enhanced:hover .service-icon-bg { transform: scale(1.05); }
+        
+        .process-step-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: all 0.3s ease;
-        }
-
-        .service-features li:hover {
-            transform: translateX(5px);
-        }
-
-        .service-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #28a745;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .service-features li:hover::before {
-            color: #ffc107;
-            transform: scale(1.2);
-        }
-
-        .service-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #1e7e34;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 2px;
-        }
-
-        .service-link:hover {
-            color: #28a745;
-            border-bottom: 2px solid #28a745;
-            gap: 0.8rem;
-        }
-
-        /* Service Categories */
-        .service-categories {
-            background: #f8f9fa;
-            padding: 80px 2rem;
-            margin: 100px -2rem;
-        }
-
-        .categories-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .categories-container h2 {
-            font-size: 2.8rem;
-            color: #1e7e34;
-            margin-bottom: 3rem;
-            text-align: center;
             position: relative;
         }
-
-        .categories-container h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(90deg, #28a745, #ffc107);
-            border-radius: 5px;
+        .process-step-card:hover { background: rgba(45,184,74,0.12); transform: translateY(-8px); border-color: #2db84a; }
+        .step-number {
+            background: linear-gradient(135deg, #2db84a, #f5b800);
+            transition: all 0.3s;
         }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .category-card {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(40, 167, 69, 0.15);
-            border-color: #28a745;
-        }
-
-        .category-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.1);
-        }
-
-        .category-card h3 {
-            color: #1e7e34;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .category-card p {
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .category-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1e7e34;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-
-        /* Process Section */
-        .process-section {
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            padding: 100px 2rem;
-            color: white;
-            margin: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .process-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-        }
-
-        .process-section h2 {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .process-steps {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            counter-reset: step-counter;
-            position: relative;
-        }
-
-        .process-step {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            position: relative;
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-        }
-
-        .process-step:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.2);
-            border-color: #ffc107;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .process-step::before {
-            content: counter(step-counter);
-            counter-increment: step-counter;
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
-            background: #ffc107;
-            color: #1e7e34;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .process-step:hover::before {
-            transform: translateX(-50%) scale(1.1);
-            background: white;
-        }
-
-        .process-step h3 {
-            margin-bottom: 1.2rem;
-            font-size: 1.4rem;
-        }
-
-        .process-step p {
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* Industries Section */
-        .industries-section {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 2rem;
-        }
-
-        .industries-section h2 {
-            font-size: 2.8rem;
-            color: #1e7e34;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .industries-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(90deg, #28a745, #ffc107);
-            border-radius: 5px;
-        }
-
-        .industries-section p {
-            font-size: 1.15rem;
-            margin-bottom: 3rem;
-            color: #555;
-            max-width: 800px;
-        }
-
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .industry-card {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            text-align: center;
-            border-top: 5px solid #28a745;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .industry-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, rgba(255, 193, 7, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .industry-card:hover::before {
-            opacity: 1;
-        }
-
-        .industry-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(40, 167, 69, 0.15);
-            border-top-color: #ffc107;
-        }
-
-        .industry-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .industry-card:hover .industry-icon {
-            transform: scale(1.1);
-        }
-
-        .industry-card h3 {
-            color: #1e7e34;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .industry-card p {
-            color: #555;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Case Studies */
-        .case-studies {
-            background: #f8f9fa;
-            padding: 100px 2rem;
-            margin: 100px -2rem;
-        }
-
-        .case-studies-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .case-studies-container h2 {
-            font-size: 2.8rem;
-            color: #1e7e34;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .case-studies-container h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(90deg, #28a745, #ffc107);
-            border-radius: 5px;
-        }
-
-        .case-studies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .case-study {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        .process-step-card:hover .step-number { transform: scale(1.1); background: #f5b800; color: #07200f; }
+        
+        .industry-card, .category-card, .case-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: all 0.4s ease;
         }
-
-        .case-study:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .case-study-image {
-            height: 200px;
-            background: linear-gradient(135deg, #1e7e34, #28a745);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-
-        .case-study-content {
-            padding: 2.5rem 2rem;
-        }
-
-        .case-study h3 {
-            color: #1e7e34;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .case-study p {
-            color: #555;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .case-study-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .case-stat {
-            text-align: center;
-        }
-
-        .case-stat-value {
-            display: block;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #1e7e34;
-        }
-
-        .case-stat-label {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 100px 2rem;
-            text-align: center;
-            border-radius: 20px;
-            margin: 100px 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(30, 126, 52, 0.05)"/></svg>');
-            background-size: cover;
-        }
-
-        .cta-section h2 {
-            font-size: 2.8rem;
-            color: #1e7e34;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .cta-section p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #555;
-            position: relative;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(30, 126, 52, 0.4);
-            position: relative;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(30, 126, 52, 0.6);
-            background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            color: #ffc107;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #ffc107;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 2rem;
-        }
-
-        .footer-bottom p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2.5rem;
-            }
-
-            .page-header p {
-                font-size: 1.1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .services-overview h2, .industries-section h2 {
-                font-size: 2.2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .process-steps {
-                grid-template-columns: 1fr;
-            }
-        }
+        .industry-card:hover, .category-card:hover, .case-card:hover { background: rgba(30,158,56,0.1); transform: translateY(-8px); border-color: #2db84a; }
+        
+        .reveal { opacity: 0; transform: translateY(36px); transition: all 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        .mobile-nav { display: none; flex-direction: column; gap: 1rem; padding: 1.5rem 2rem; }
+        .mobile-nav.open { display: flex; }
+        @media (max-width: 768px) { .desktop-nav { display: none; } }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #07200f; }
+        ::-webkit-scrollbar-thumb { background: #2db84a; border-radius: 3px; }
+        .text-gradient { background: linear-gradient(135deg, #66d47e 0%, #f5b800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     </style>
 </head>
 <body>
-    <header id="header">
-        <nav>
-            <div class="logo">
-                <span class="logo-icon"></span><a><img src="assets/AfricanGreenLogo.png" width="80" height="80"></a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html" style="color: #ffc107;">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">☰</div>
-        </nav>
-    </header>
 
-    <section class="page-header">
-        <h1>Our Services</h1>
-        <p>Comprehensive biogas solutions tailored to your specific needs and waste streams</p>
-    </section>
+<!-- ░░░ NAVIGATION (identical to index & about) ░░░ -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+      <img class="font-display font-bold text-white text-lg tracking-tight" src="assets/AfricanGreenLogo.png" alt="African Green Solutions Logo" style="width:90px; height:auto;" />
+        </div>
+        <ul class="desktop-nav hidden md:flex items-center gap-8">
+            <li><a href="index.html" class="nav-link text-white/80 font-body font-medium text-sm">Home</a></li>
+            <li><a href="about.html" class="nav-link text-white/80 font-body font-medium text-sm">About</a></li>
+            <li><a href="services.html" class="nav-link text-leaf-300 font-body font-medium text-sm border-b-2 border-leaf-400">Services</a></li>
+            <li><a href="contact.html" class="nav-link text-white/80 font-body font-medium text-sm">Contact</a></li>
+            <li><a href="contact.html" class="btn-glow px-5 py-2 rounded-full font-display font-semibold text-sm text-white">Get Started</a></li>
+        </ul>
+        <button id="menuBtn" class="md:hidden text-white text-2xl">☰</button>
+    </div>
+    <div id="mobileMenu" class="mobile-nav glass-dark">
+        <a href="index.html" class="text-white/80 font-medium hover:text-leaf-400">Home</a>
+        <a href="about.html" class="text-white/80 font-medium hover:text-leaf-400">About</a>
+        <a href="services.html" class="text-leaf-300 font-medium">Services</a>
+        <a href="contact.html" class="text-white/80 font-medium hover:text-leaf-400">Contact</a>
+    </div>
+</nav>
 
-    <section class="services-overview">
-        <h2>Our Comprehensive Services</h2>
-        <p>African Green Solutions offers a complete range of biogas services, from initial feasibility studies to ongoing maintenance. Our expertise ensures that your biogas project delivers maximum efficiency, reliability, and return on investment while contributing to a sustainable future.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🏗️</div>
-                <div class="service-content">
-                    <h3>Anaerobic Digestor Design & Installation</h3>
-                    <p>Custom-designed digestors tailored to your specific needs and waste streams. Our engineering team creates optimized solutions for maximum biogas production and efficiency.</p>
-                    <ul class="service-features">
-                        <li>Custom design based on waste composition analysis</li>
-                        <li>Site-specific engineering solutions</li>
-                        <li>Professional installation by certified technicians</li>
-                        <li>Quality materials and construction standards</li>
-                        <li>Integration with existing infrastructure</li>
+<!-- ░░░ HERO SECTION (glass + floating) ░░░ -->
+<section class="relative pt-40 pb-28 px-6 overflow-hidden" style="background: radial-gradient(ellipse at 70% 30%, #0d461a, #051e0b);">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute w-96 h-96 rounded-full bg-leaf-500/20 blur-3xl -top-20 -right-20 animate-pulseglow"></div>
+        <div class="absolute w-80 h-80 rounded-full bg-amber-400/10 blur-3xl bottom-10 left-10 animate-float"></div>
+        <div class="spin-ring" style="width:400px;height:400px;top:20%;left:-10%;opacity:0.2;border:1px solid #2db84a;border-radius:50%;position:absolute;animation:spinSlow 20s linear infinite;"></div>
+    </div>
+    <div class="max-w-5xl mx-auto text-center relative z-2">
+        <div class="glass inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 animate-float">
+            <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulseglow"></span>
+            <span class="text-leaf-300 font-body text-xs font-medium tracking-wide">End-to-end biogas solutions</span>
+        </div>
+        <h1 class="font-display font-extrabold text-5xl md:text-7xl text-white leading-tight mb-5" style="letter-spacing:-2px;">Our <span class="text-gradient">Services</span></h1>
+        <p class="font-body text-white/70 text-lg md:text-xl max-w-2xl mx-auto">From feasibility to maintenance — comprehensive biogas solutions tailored to your waste streams, energy goals, and budget.</p>
+    </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-40"><div class="w-px h-12 bg-gradient-to-t from-leaf-400 to-transparent"></div></div>
+</section>
+
+<!-- ░░░ INTRO TEXT ░░░ -->
+<section class="py-16 px-6 mesh-bg-about" style="background: radial-gradient(ellipse at 20% 30%, #1e9e38 0%, transparent 45%), radial-gradient(ellipse at 90% 70%, #0d461a 0%, transparent 55%), #07200f;">
+    <div class="max-w-4xl mx-auto text-center reveal">
+        <p class="font-body text-amber-400 text-sm font-semibold tracking-wider uppercase mb-3">What we deliver</p>
+        <h2 class="font-display font-extrabold text-4xl md:text-5xl text-white mb-6">Complete <span class="text-gradient">Biogas Ecosystem</span></h2>
+        <p class="text-white/70 text-lg leading-relaxed">African Green Solutions offers a full range of services — from pre-feasibility to plant commissioning and lifelong support. Each solution is engineered to maximize biogas yield, minimize downtime, and create long-term value from organic waste.</p>
+    </div>
+</section>
+
+<!-- ░░░ SERVICES GRID (6 cards with modern icons) ░░░ -->
+<section class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="service-card-enhanced rounded-3xl overflow-hidden reveal">
+                <div class="service-icon-bg h-32 flex items-center justify-center text-5xl">🏗️</div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-2xl text-white mb-3">Digestor Design & Installation</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Custom-engineered anaerobic digestors tailored to your waste composition, site constraints, and energy targets.</p>
+                    <ul class="space-y-2 text-white/50 text-xs mb-5">
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Waste characterization & sizing</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Professional installation & commissioning</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Integration with existing utilities</li>
                     </ul>
-                    <a href="contact.html" class="service-link">Request a Consultation →</a>
+                    <a href="contact.html" class="inline-flex items-center gap-1 text-leaf-400 text-sm font-semibold hover:gap-2 transition-all">Consult →</a>
                 </div>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <div class="service-content">
-                    <h3>Maintenance of Digestors</h3>
-                    <p>Comprehensive maintenance services to ensure optimal performance and longevity of your biogas system, minimizing downtime and maximizing efficiency.</p>
-                    <ul class="service-features">
-                        <li>Regular system inspections and performance monitoring</li>
-                        <li>Preventive maintenance schedules</li>
-                        <li>24/7 emergency repair services</li>
-                        <li>Performance optimization and tuning</li>
-                        <li>Spare parts and component replacement</li>
-                        <li>Remote monitoring and diagnostics</li>
+            <!-- Card 2 -->
+            <div class="service-card-enhanced rounded-3xl overflow-hidden reveal" style="transition-delay:0.05s">
+                <div class="service-icon-bg h-32 flex items-center justify-center text-5xl">🔧</div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-2xl text-white mb-3">Maintenance & Optimisation</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Proactive maintenance plans, remote monitoring, and performance tuning to keep your digester at peak output.</p>
+                    <ul class="space-y-2 text-white/50 text-xs mb-5">
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> 24/7 emergency support</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Predictive analytics & reporting</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Spare parts & on-site teams</li>
                     </ul>
-                    <a href="contact.html" class="service-link">Schedule Maintenance →</a>
+                    <a href="contact.html" class="inline-flex items-center gap-1 text-leaf-400 text-sm font-semibold hover:gap-2 transition-all">Schedule →</a>
                 </div>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <div class="service-content">
-                    <h3>Pre-construction Feasibility Studies</h3>
-                    <p>Data-driven analysis to determine the best solution for your project and ensure its economic viability, technical feasibility, and regulatory compliance.</p>
-                    <ul class="service-features">
-                        <li>Comprehensive waste characterization and analysis</li>
-                        <li>Biogas potential assessment and yield projections</li>
-                        <li>Economic feasibility and ROI analysis</li>
-                        <li>Regulatory compliance and permitting review</li>
-                        <li>Site suitability and environmental impact evaluation</li>
-                        <li>Risk assessment and mitigation strategies</li>
+            <!-- Card 3 -->
+            <div class="service-card-enhanced rounded-3xl overflow-hidden reveal" style="transition-delay:0.1s">
+                <div class="service-icon-bg h-32 flex items-center justify-center text-5xl">📊</div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-2xl text-white mb-3">Feasibility Studies</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Data-driven analysis covering waste potential, ROI, regulatory pathways, and technical viability before investment.</p>
+                    <ul class="space-y-2 text-white/50 text-xs mb-5">
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Biogas yield modeling</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Financial & carbon savings forecast</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Risk assessment</li>
                     </ul>
-                    <a href="contact.html" class="service-link">Request a Study →</a>
+                    <a href="contact.html" class="inline-flex items-center gap-1 text-leaf-400 text-sm font-semibold hover:gap-2 transition-all">Request study →</a>
                 </div>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">🏭</div>
-                <div class="service-content">
-                    <h3>Construction of Biogas Facilities</h3>
-                    <p>End-to-end construction of complete biogas production facilities, from initial groundwork to final commissioning and handover.</p>
-                    <ul class="service-features">
-                        <li>Turnkey project management and execution</li>
-                        <li>Civil works and site infrastructure development</li>
-                        <li>Mechanical and electrical system installation</li>
-                        <li>Gas storage and distribution systems</li>
-                        <li>Commissioning, testing, and performance validation</li>
-                        <li>Comprehensive documentation and training</li>
+            <!-- Card 4 -->
+            <div class="service-card-enhanced rounded-3xl overflow-hidden reveal" style="transition-delay:0.15s">
+                <div class="service-icon-bg h-32 flex items-center justify-center text-5xl">🏭</div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-2xl text-white mb-3">Biogas Facility Construction</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Turnkey project management — civil works, mechanical/electrical installation, testing, and full handover.</p>
+                    <ul class="space-y-2 text-white/50 text-xs mb-5">
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> End-to-end construction</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Quality & safety certified</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Operator training included</li>
                     </ul>
-                    <a href="contact.html" class="service-link">Discuss Your Project →</a>
+                    <a href="contact.html" class="inline-flex items-center gap-1 text-leaf-400 text-sm font-semibold hover:gap-2 transition-all">Build with us →</a>
                 </div>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <div class="service-content">
-                    <h3>Supply of Biogas & Fertilizer</h3>
-                    <p>Providing clean energy and organic fertilizer by-products to support your operations and create additional revenue streams from waste conversion.</p>
-                    <ul class="service-features">
-                        <li>Biogas purification and upgrading to pipeline quality</li>
-                        <li>Energy generation and distribution solutions</li>
-                        <li>Organic fertilizer processing and packaging</li>
-                        <li>Product quality testing and certification</li>
-                        <li>Distribution and marketing support</li>
-                        <li>Carbon credit and renewable energy certificate assistance</li>
+            <!-- Card 5 -->
+            <div class="service-card-enhanced rounded-3xl overflow-hidden reveal" style="transition-delay:0.2s">
+                <div class="service-icon-bg h-32 flex items-center justify-center text-5xl">⚡</div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-2xl text-white mb-3">Biogas & Fertilizer Supply</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Clean energy distribution and premium organic bio-fertilizer as a revenue stream from your waste conversion.</p>
+                    <ul class="space-y-2 text-white/50 text-xs mb-5">
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Upgraded biomethane / electricity</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Certified organic fertilizer</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Carbon credit assistance</li>
                     </ul>
-                    <a href="contact.html" class="service-link">Inquire About Products →</a>
+                    <a href="contact.html" class="inline-flex items-center gap-1 text-leaf-400 text-sm font-semibold hover:gap-2 transition-all">Inquire →</a>
                 </div>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">🔍</div>
-                <div class="service-content">
-                    <h3>Consulting & Training</h3>
-                    <p>Expert consulting services and comprehensive training programs to maximize the benefits of your biogas investment and ensure long-term operational success.</p>
-                    <ul class="service-features">
-                        <li>Technical consulting and advisory services</li>
-                        <li>Comprehensive operator training programs</li>
-                        <li>Safety protocols and compliance training</li>
-                        <li>Performance monitoring and optimization setup</li>
-                        <li>Ongoing technical support and troubleshooting</li>
-                        <li>Customized operational manuals and procedures</li>
+            <!-- Card 6 -->
+            <div class="service-card-enhanced rounded-3xl overflow-hidden reveal" style="transition-delay:0.25s">
+                <div class="service-icon-bg h-32 flex items-center justify-center text-5xl">🎓</div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-2xl text-white mb-3">Consulting & Training</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Expert advisory and certified training programs for operators and maintenance teams to ensure long-term success.</p>
+                    <ul class="space-y-2 text-white/50 text-xs mb-5">
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Technical & safety workshops</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Continuous support hotline</li>
+                        <li class="flex items-center gap-2"><span class="text-leaf-400">✓</span> Custom SOP development</li>
                     </ul>
-                    <a href="contact.html" class="service-link">Learn About Training →</a>
+                    <a href="contact.html" class="inline-flex items-center gap-1 text-leaf-400 text-sm font-semibold hover:gap-2 transition-all">Learn more →</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="service-categories">
-        <div class="categories-container">
-            <h2>Service Categories</h2>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <span class="category-icon">🔧</span>
-                    <h3>Design & Engineering</h3>
-                    <p>Custom biogas system design and engineering solutions</p>
-                    <div class="category-stats">
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">98%</span>
-                            <span class="stat-label">Success Rate</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="category-card">
-                    <span class="category-icon">🏗️</span>
-                    <h3>Construction</h3>
-                    <p>Turnkey biogas facility construction and installation</p>
-                    <div class="category-stats">
-                        <div class="stat">
-                            <span class="stat-number">35+</span>
-                            <span class="stat-label">Facilities</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">On Time</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="category-card">
-                    <span class="category-icon">⚡</span>
-                    <h3>Operations</h3>
-                    <p>Maintenance, monitoring and optimization services</p>
-                    <div class="category-stats">
-                        <div class="stat">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Support</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">99%</span>
-                            <span class="stat-label">Uptime</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="category-card">
-                    <span class="category-icon">🎓</span>
-                    <h3>Training</h3>
-                    <p>Comprehensive operator training and certification</p>
-                    <div class="category-stats">
-                        <div class="stat">
-                            <span class="stat-number">200+</span>
-                            <span class="stat-label">Trained</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Certified</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ░░░ SERVICE CATEGORIES (stats cards) ░░░ -->
+<section class="py-20 px-6 bg-[#051e0b]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14 reveal">
+            <p class="font-body text-leaf-400 text-sm font-semibold tracking-wider uppercase">by the numbers</p>
+            <h2 class="font-display font-extrabold text-5xl text-white">Service <span class="text-gradient">Categories</span></h2>
         </div>
-    </section>
-
-    <section class="process-section">
-        <h2>Our Project Process</h2>
-        <div class="process-steps">
-            <div class="process-step">
-                <h3>Consultation & Assessment</h3>
-                <p>We begin with a detailed assessment of your needs, waste streams, site conditions, and energy requirements to understand your specific challenges and opportunities.</p>
-            </div>
-            <div class="process-step">
-                <h3>Feasibility Study</h3>
-                <p>Comprehensive analysis to determine project viability, optimal system design, economic returns, and regulatory compliance requirements.</p>
-            </div>
-            <div class="process-step">
-                <h3>Custom Design</h3>
-                <p>Our engineering team creates a tailored solution optimized for your specific requirements, waste composition, and operational constraints.</p>
-            </div>
-            <div class="process-step">
-                <h3>Installation</h3>
-                <p>Professional installation by our certified technicians with minimal disruption to your operations, following strict quality and safety standards.</p>
-            </div>
-            <div class="process-step">
-                <h3>Commissioning</h3>
-                <p>System testing, performance optimization, and comprehensive handover with detailed documentation and operator training.</p>
-            </div>
-            <div class="process-step">
-                <h3>Ongoing Support</h3>
-                <p>Continuous maintenance, performance monitoring, and technical support to ensure optimal system performance and maximum return on investment.</p>
-            </div>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="category-card rounded-2xl p-6 text-center reveal"><div class="text-5xl mb-3">🔧</div><h3 class="font-display text-xl text-white mb-2">Design & Engineering</h3><p class="text-white/60 text-sm">50+ projects, 98% success rate</p><div class="mt-4 text-leaf-400 font-bold">Custom CAD & CFD</div></div>
+            <div class="category-card rounded-2xl p-6 text-center reveal" style="transition-delay:0.1s"><div class="text-5xl mb-3">🏗️</div><h3 class="font-display text-xl text-white mb-2">Construction</h3><p class="text-white/60 text-sm">35+ facilities, on-time delivery</p><div class="mt-4 text-leaf-400 font-bold">Turnkey execution</div></div>
+            <div class="category-card rounded-2xl p-6 text-center reveal" style="transition-delay:0.2s"><div class="text-5xl mb-3">⚡</div><h3 class="font-display text-xl text-white mb-2">Operations</h3><p class="text-white/60 text-sm">24/7 support, 99% uptime</p><div class="mt-4 text-leaf-400 font-bold">Remote monitoring</div></div>
+            <div class="category-card rounded-2xl p-6 text-center reveal" style="transition-delay:0.3s"><div class="text-5xl mb-3">🎓</div><h3 class="font-display text-xl text-white mb-2">Training</h3><p class="text-white/60 text-sm">200+ trained, 100% certified</p><div class="mt-4 text-leaf-400 font-bold">Hands-on workshops</div></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="industries-section">
-        <h2>Industries We Serve</h2>
-        <p>Our biogas solutions are tailored to meet the specific needs of various industries across Africa, helping them convert waste into valuable energy resources.</p>
-        
-        <div class="industries-grid">
-            <div class="industry-card">
-                <span class="industry-icon">🚜</span>
-                <h3>Agriculture</h3>
-                <p>Farm waste management and energy solutions for agricultural operations, including livestock manure and crop residue processing.</p>
-            </div>
-            <div class="industry-card">
-                <span class="industry-icon">🍎</span>
-                <h3>Food Processing</h3>
-                <p>Organic waste conversion for food manufacturing and processing facilities, reducing disposal costs and generating clean energy.</p>
-            </div>
-            <div class="industry-card">
-                <span class="industry-icon">🏥</span>
-                <h3>Healthcare</h3>
-                <p>Waste management and energy solutions for hospitals and healthcare facilities, ensuring safe disposal and energy independence.</p>
-            </div>
-            <div class="industry-card">
-                <span class="industry-icon">🏨</span>
-                <h3>Hospitality</h3>
-                <p>Food waste conversion and energy generation for hotels and restaurants, reducing operational costs and environmental impact.</p>
-            </div>
-            <div class="industry-card">
-                <span class="industry-icon">🏢</span>
-                <h3>Municipal</h3>
-                <p>Community-scale biogas solutions for municipal waste management, creating renewable energy from community waste streams.</p>
-            </div>
-            <div class="industry-card">
-                <span class="industry-icon">🏫</span>
-                <h3>Educational</h3>
-                <p>Biogas systems for schools, universities, and educational institutions, serving as both energy solutions and educational tools.</p>
-            </div>
-            <div class="industry-card">
-                <span class="industry-icon">🏭</span>
-                <h3>Industrial</h3>
-                <p>Waste-to-energy solutions for manufacturing and industrial facilities, turning production byproducts into valuable resources.</p>
-            </div>
-            <div class="industry-card">
-                <span class="industry-icon">🛒</span>
-                <h3>Retail</h3>
-                <p>Food waste management for supermarkets and retail chains, reducing landfill contributions and generating cost savings.</p>
-            </div>
+<!-- ░░░ OUR PROCESS (steps) ░░░ -->
+<section class="py-24 px-6" style="background: radial-gradient(ellipse at 80% 20%, #0d461a, #030f06);">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14 reveal">
+            <p class="font-body text-amber-400 text-sm font-semibold tracking-wider uppercase">How we work</p>
+            <h2 class="font-display font-extrabold text-5xl text-white">Project <span class="text-gradient">Process</span></h2>
         </div>
-    </section>
-
-    <section class="case-studies">
-        <div class="case-studies-container">
-            <h2>Success Stories</h2>
-            <div class="case-studies-grid">
-                <div class="case-study">
-                    <div class="case-study-image">🚜</div>
-                    <div class="case-study-content">
-                        <h3>Agricultural Cooperative</h3>
-                        <p>Implemented a large-scale biogas system that processes 10 tons of agricultural waste daily, providing energy for 200 households and producing organic fertilizer.</p>
-                        <div class="case-study-stats">
-                            <div class="case-stat">
-                                <span class="case-stat-value">80%</span>
-                                <span class="case-stat-label">Cost Reduction</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="case-stat-value">10 tons</span>
-                                <span class="case-stat-label">Daily Processing</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="case-stat-value">200</span>
-                                <span class="case-stat-label">Households Powered</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="case-study">
-                    <div class="case-study-image">🏨</div>
-                    <div class="case-study-content">
-                        <h3>Hotel Chain</h3>
-                        <p>Installed biogas systems across 5 hotel locations, reducing food waste disposal costs by 70% and generating 40% of their energy needs from waste.</p>
-                        <div class="case-study-stats">
-                            <div class="case-stat">
-                                <span class="case-stat-value">70%</span>
-                                <span class="case-stat-label">Cost Reduction</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="case-stat-value">40%</span>
-                                <span class="case-stat-label">Energy Needs</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="case-stat-value">5</span>
-                                <span class="case-stat-label">Locations</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="case-study">
-                    <div class="case-study-image">🏭</div>
-                    <div class="case-study-content">
-                        <h3>Food Processing Plant</h3>
-                        <p>Developed a comprehensive waste-to-energy solution that processes 15 tons of organic waste daily, achieving energy independence and creating new revenue streams.</p>
-                        <div class="case-study-stats">
-                            <div class="case-stat">
-                                <span class="case-stat-value">100%</span>
-                                <span class="case-stat-label">Energy Independent</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="case-stat-value">15 tons</span>
-                                <span class="case-stat-label">Daily Processing</span>
-                            </div>
-                            <div class="case-stat">
-                                <span class="case-stat-value">3</span>
-                                <span class="case-stat-label">Revenue Streams</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="process-step-card rounded-2xl p-5 text-center reveal"><div class="step-number w-10 h-10 rounded-full bg-leaf-500 text-white flex items-center justify-center font-display font-bold mx-auto mb-4">1</div><h4 class="font-display font-bold text-white text-sm">Consultation</h4><p class="text-white/50 text-xs">Needs & waste assessment</p></div>
+            <div class="process-step-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.05s"><div class="step-number w-10 h-10 rounded-full bg-leaf-500 text-white flex items-center justify-center font-display font-bold mx-auto mb-4">2</div><h4 class="font-display font-bold text-white text-sm">Feasibility</h4><p class="text-white/50 text-xs">ROI & technical study</p></div>
+            <div class="process-step-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.1s"><div class="step-number w-10 h-10 rounded-full bg-leaf-500 text-white flex items-center justify-center font-display font-bold mx-auto mb-4">3</div><h4 class="font-display font-bold text-white text-sm">Design</h4><p class="text-white/50 text-xs">Custom engineering</p></div>
+            <div class="process-step-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.15s"><div class="step-number w-10 h-10 rounded-full bg-leaf-500 text-white flex items-center justify-center font-display font-bold mx-auto mb-4">4</div><h4 class="font-display font-bold text-white text-sm">Build</h4><p class="text-white/50 text-xs">Installation & commissioning</p></div>
+            <div class="process-step-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.2s"><div class="step-number w-10 h-10 rounded-full bg-leaf-500 text-white flex items-center justify-center font-display font-bold mx-auto mb-4">5</div><h4 class="font-display font-bold text-white text-sm">Operate</h4><p class="text-white/50 text-xs">Monitoring & optimization</p></div>
+            <div class="process-step-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.25s"><div class="step-number w-10 h-10 rounded-full bg-leaf-500 text-white flex items-center justify-center font-display font-bold mx-auto mb-4">6</div><h4 class="font-display font-bold text-white text-sm">Support</h4><p class="text-white/50 text-xs">Lifetime maintenance</p></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="cta-section">
-        <h2>Ready to Transform Your Waste into Energy?</h2>
-        <p>Contact us today to discuss how our biogas solutions can benefit your business or community. Our experts are ready to provide a customized proposal based on your specific needs and help you harness the power of renewable energy.</p>
-        <a href="contact.html" class="cta-button">Get Started Today</a>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <span class="logo-icon"></span><a><img src="assets/AfricanGreenLogo.png" width="80" height="80"></a>
-                <p>Pioneering renewable energy solutions for a sustainable African future through innovative biogas technology.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="services.html">Digestor Design & Installation</a></li>
-                    <li><a href="services.html">Maintenance Services</a></li>
-                    <li><a href="services.html">Feasibility Studies</a></li>
-                    <li><a href="services.html">Biogas Supply</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <ul class="footer-links">
-                    <li>📞 083 892 4162</li>
-                    <li>📧 africangreensolutions@gmail.com</li>
-                    <li>📍 252 Wellington Street, Ironside, Gauteng, 1984</li>
-                </ul>
-            </div>
+<!-- ░░░ INDUSTRIES WE SERVE ░░░ -->
+<section class="py-24 px-6 mesh-bg-about">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14 reveal">
+            <p class="font-body text-leaf-400 text-sm font-semibold tracking-wider uppercase">sectors we empower</p>
+            <h2 class="font-display font-extrabold text-5xl text-white">Industries <span class="text-gradient">We Serve</span></h2>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
-            <p>Powering a Greener Future</p>
+        <div class="grid md:grid-cols-4 gap-5">
+            <div class="industry-card rounded-2xl p-5 text-center reveal"><div class="text-4xl mb-3">🚜</div><h3 class="font-display font-semibold text-white">Agriculture</h3><p class="text-white/50 text-sm">Livestock manure, crop residue</p></div>
+            <div class="industry-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.1s"><div class="text-4xl mb-3">🍎</div><h3 class="font-display font-semibold text-white">Food Processing</h3><p class="text-white/50 text-sm">Organic waste, byproduct streams</p></div>
+            <div class="industry-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.2s"><div class="text-4xl mb-3">🏨</div><h3 class="font-display font-semibold text-white">Hospitality</h3><p class="text-white/50 text-sm">Food waste, kitchens, resorts</p></div>
+            <div class="industry-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.3s"><div class="text-4xl mb-3">🏭</div><h3 class="font-display font-semibold text-white">Industrial</h3><p class="text-white/50 text-sm">Manufacturing & effluent</p></div>
+            <div class="industry-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.4s"><div class="text-4xl mb-3">🏢</div><h3 class="font-display font-semibold text-white">Municipal</h3><p class="text-white/50 text-sm">Community organic waste</p></div>
+            <div class="industry-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.5s"><div class="text-4xl mb-3">🏥</div><h3 class="font-display font-semibold text-white">Healthcare</h3><p class="text-white/50 text-sm">Cafeteria & bio-waste</p></div>
+            <div class="industry-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.6s"><div class="text-4xl mb-3">🛒</div><h3 class="font-display font-semibold text-white">Retail</h3><p class="text-white/50 text-sm">Supermarket food waste</p></div>
+            <div class="industry-card rounded-2xl p-5 text-center reveal" style="transition-delay:0.7s"><div class="text-4xl mb-3">🏫</div><h3 class="font-display font-semibold text-white">Education</h3><p class="text-white/50 text-sm">Campuses & training centers</p></div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+<!-- ░░░ SUCCESS STORIES (case studies) ░░░ -->
+<section class="py-24 px-6" style="background:#07200f;">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14 reveal">
+            <p class="font-body text-amber-400 text-sm font-semibold tracking-wider uppercase">real impact</p>
+            <h2 class="font-display font-extrabold text-5xl text-white">Success <span class="text-gradient">Stories</span></h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="case-card rounded-2xl overflow-hidden reveal"><div class="h-32 bg-gradient-to-r from-leaf-800 to-leaf-600 flex items-center justify-center text-5xl">🚜</div><div class="p-6"><h3 class="font-display font-bold text-white text-xl">Agricultural Co-op</h3><p class="text-white/60 text-sm mt-2">10 tons/day → biogas for 200 households + organic fertilizer.</p><div class="flex justify-between mt-5 text-xs text-white/50"><span>⬇️ 80% costs</span><span>🌱 100% renewable</span></div></div></div>
+            <div class="case-card rounded-2xl overflow-hidden reveal" style="transition-delay:0.1s"><div class="h-32 bg-gradient-to-r from-amber-700 to-leaf-600 flex items-center justify-center text-5xl">🏨</div><div class="p-6"><h3 class="font-display font-bold text-white text-xl">Hotel Chain (5 sites)</h3><p class="text-white/60 text-sm mt-2">70% waste cost reduction, 40% of energy from on-site biogas.</p><div class="flex justify-between mt-5 text-xs text-white/50"><span>⚡ 40% energy self-supply</span><span>♻️ Zero landfill</span></div></div></div>
+            <div class="case-card rounded-2xl overflow-hidden reveal" style="transition-delay:0.2s"><div class="h-32 bg-gradient-to-r from-leaf-700 to-amber-500 flex items-center justify-center text-5xl">🏭</div><div class="p-6"><h3 class="font-display font-bold text-white text-xl">Food Processing Plant</h3><p class="text-white/60 text-sm mt-2">15 tons/day → energy independence + 3 revenue streams.</p><div class="flex justify-between mt-5 text-xs text-white/50"><span>✅ 100% energy independent</span><span>💰 fertilizer sales</span></div></div></div>
+        </div>
+    </div>
+</section>
 
-        // Scroll animation for service cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+<!-- ░░░ CTA SECTION (matching vibe) ░░░ -->
+<section class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #0d461a, #06220c);">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1000&q=80')] bg-cover bg-center opacity-10"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-2">
+        <h2 class="font-display font-extrabold text-4xl md:text-6xl text-white mb-5">Ready to Transform <span class="text-gradient">Waste into Energy?</span></h2>
+        <p class="font-body text-white/70 text-lg mb-8">Let’s discuss your project — from feasibility to full-scale operation, we’re here to help you harness the power of biogas.</p>
+        <a href="contact.html" class="btn-glow inline-block px-10 py-4 rounded-full font-display font-bold text-white text-lg shadow-2xl">Get a Custom Proposal →</a>
+    </div>
+</section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+<!-- ░░░ FOOTER (identical to index) ░░░ -->
+<footer style="background:#030f06; border-top:1px solid rgba(45,184,74,0.15);" class="py-16 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-10 mb-12">
+            <div class="md:col-span-2"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-leaf-400 to-leaf-600 flex items-center justify-center text-sm font-display font-bold text-white">AG</div><span class="font-display font-bold text-white text-lg">African Green Solutions</span></div><p class="font-body text-white/50 text-sm max-w-xs">Pioneering renewable energy solutions for a sustainable African future through innovative biogas technology.</p><p class="font-body text-leaf-400/60 text-xs mt-4 italic">Fuel the planet with what it feeds on.</p></div>
+            <div><h4 class="font-display font-bold text-white text-sm mb-5">Quick Links</h4><ul class="space-y-3"><li><a href="index.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Home</a></li><li><a href="about.html" class="font-body text-white/50 text-sm hover:text-leaf-400">About Us</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Services</a></li><li><a href="contact.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Contact</a></li></ul></div>
+            <div><h4 class="font-display font-bold text-white text-sm mb-5">Services</h4><ul class="space-y-3"><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Digestor Design</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Maintenance</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Feasibility Studies</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Biogas Supply</a></li></ul></div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);" class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4"><p class="font-body text-white/35 text-xs">© 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p><p class="font-body text-leaf-400/50 text-xs">Powering a Greener Future</p></div>
+    </div>
+</footer>
 
-        document.querySelectorAll('.service-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').style.display = 'none';
-                    }
-                }
-            });
-        });
-    </script>
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const el = document.querySelector(a.getAttribute('href')); if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+</script>
 </body>
 </html>

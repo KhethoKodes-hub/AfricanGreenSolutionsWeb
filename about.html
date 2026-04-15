@@ -3,984 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - African Green Solutions</title>
-        <link href="assets/AfricanGreenLogo.png" rel="icon" type="image/png">
-
+    <title>About Us — African Green Solutions</title>
+    <link href="assets/AfricanGreenLogo.png" rel="icon" type="image/png">
+    <!-- Google Fonts + Tailwind + extra styles (matching index) -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        leaf: { 50: '#f0faf2', 100: '#d6f5dc', 200: '#a8e9b4', 300: '#66d47e', 400: '#2db84a', 500: '#1e9e38', 600: '#177d2b', 700: '#126122', 800: '#0d461a', 900: '#072e10' },
+                        amber: { 400: '#f5b800', 500: '#d9a200', 600: '#b88800' },
+                        earth: { 100: '#f7f3ee', 200: '#ede5d8', 300: '#d4c4a8', 400: '#b09070' },
+                    },
+                    backgroundImage: {
+                        'mesh-about': "radial-gradient(ellipse at 20% 30%, #1e9e38 0%, transparent 45%), radial-gradient(ellipse at 90% 70%, #0d461a 0%, transparent 55%), #07200f",
+                        'leaf-pattern': "url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80')",
+                    },
+                    keyframes: {
+                        float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-12px)' } },
+                        pulseglow: { '0%,100%': { opacity: '0.5', transform: 'scale(1)' }, '50%': { opacity: '1', transform: 'scale(1.08)' } },
+                        reveal: { from: { opacity: '0', transform: 'translateY(40px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+                        spinSlow: { from: { transform: 'rotate(0deg)' }, to: { transform: 'rotate(360deg)' } },
+                    },
+                    animation: {
+                        float: 'float 6s ease-in-out infinite',
+                        pulseglow: 'pulseglow 3s ease-in-out infinite',
+                        reveal: 'reveal 0.8s ease forwards',
+                        spinSlow: 'spinSlow 18s linear infinite',
+                    },
+                }
+            }
+        };
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: #07200f; color: #f0f9f0; overflow-x: hidden; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #2d3436;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+        /* Glassmorphism */
+        .glass { background: rgba(255,255,255,0.07); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-dark { background: rgba(7,32,15,0.7); backdrop-filter: blur(20px); border: 1px solid rgba(45,184,74,0.2); }
+        .glass-leaf { background: rgba(30,158,56,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(45,184,74,0.25); }
 
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            padding: 0.5rem 0;
-            background: rgba(30, 126, 52, 0.98);
-            backdrop-filter: blur(10px);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            font-size: 1.8rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: #ffc107;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Page Header */
-        .page-header {
-            background: linear-gradient(135deg, rgba(30, 126, 52, 0.95) 0%, rgba(40, 167, 69, 0.95) 100%);
-            padding: 180px 2rem 100px;
-            text-align: center;
-            color: white;
-            margin-top: 70px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231e7e34" width="1200" height="600"/><circle cx="100" cy="100" r="50" fill="%2328a745" opacity="0.3"/><circle cx="900" cy="400" r="80" fill="%2328a745" opacity="0.3"/><circle cx="1100" cy="200" r="60" fill="%2320c997" opacity="0.3"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
-        }
-
-        .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            position: relative;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .page-header p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeInUp 1.2s ease;
-            position: relative;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* About Content */
-        .about-content {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 2rem;
-        }
-
-        .about-section {
-            margin-bottom: 100px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .about-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .about-section h2 {
-            font-size: 2.8rem;
-            color: #1e7e34;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .about-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(90deg, #28a745, #ffc107);
-            border-radius: 5px;
-        }
-
-        .about-section p {
-            font-size: 1.15rem;
-            margin-bottom: 1.5rem;
-            color: #555;
-            line-height: 1.7;
-        }
-
-        /* Story Section */
-        .story-timeline {
-            position: relative;
-            margin-top: 3rem;
-            padding-left: 2rem;
-        }
-
-        .story-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #1e7e34, #28a745, #ffc107);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2.5rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0.5rem;
-            width: 16px;
-            height: 16px;
-            background: #28a745;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 0 0 3px #28a745;
-        }
-
-        .timeline-year {
-            font-weight: bold;
-            color: #1e7e34;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Mission & Vision */
-        .mission-vision {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .mission-card, .vision-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 3rem 2.5rem;
-            border-radius: 20px;
+        /* Nav styling (matching index) */
+        #nav {
             transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: transparent;
+        }
+        #nav.scrolled {
+            background: rgba(7,32,15,0.88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45,184,74,0.2);
+        }
+        .nav-link { position: relative; transition: color 0.3s; }
+        .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:linear-gradient(90deg,#2db84a,#f5b800); transition:width 0.35s ease; border-radius:2px; }
+        .nav-link:hover::after { width:100%; }
+        .nav-link:hover { color: #66d47e; }
+
+        .btn-glow {
+            background: linear-gradient(135deg, #2db84a 0%, #1e9e38 100%);
+            transition: all 0.35s ease;
+            box-shadow: 0 0 0 rgba(45,184,74,0);
+        }
+        .btn-glow:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 30px rgba(45,184,74,0.5); }
+
+        /* Animated counters */
+        .stat-number { font-family: 'Syne', sans-serif; font-weight: 800; }
+
+        /* Custom timeline, value cards (preserve but adapt to dark/glass) */
+        .timeline-organic {
             position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(40, 167, 69, 0.1);
+            border-left: 3px solid #2db84a;
+            margin-left: 1rem;
         }
-
-        .mission-card::before, .vision-card::before {
-            content: '';
+        .timeline-dot {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #1e7e34, #28a745, #ffc107);
+            left: -2.1rem;
+            top: 0.25rem;
+            width: 14px;
+            height: 14px;
+            background: #2db84a;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(45,184,74,0.2);
         }
-
-        .mission-card:hover, .vision-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .mission-icon, .vision-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .mission-card h3, .vision-card h3 {
-            color: #1e7e34;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        /* Values Section */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .value-card {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        .value-card-organic {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: all 0.4s ease;
-            border-top: 5px solid #28a745;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-
-        .value-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(40, 167, 69, 0.03) 0%, rgba(255, 193, 7, 0.03) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .value-card:hover::before {
-            opacity: 1;
-        }
-
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(40, 167, 69, 0.15);
-            border-top-color: #ffc107;
-        }
-
-        .value-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .value-card:hover .value-icon {
-            transform: scale(1.1);
-        }
-
-        .value-card h3 {
-            color: #1e7e34;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        /* Technology Section */
-        .technology-showcase {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 4rem;
-            border-radius: 20px;
-            margin-top: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .technology-showcase::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, rgba(30, 126, 52, 0.1) 0%, rgba(40, 167, 69, 0.1) 100%);
-            border-radius: 50%;
-            transform: translate(50%, -50%);
-        }
-
-        .technology-showcase::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 205, 56, 0.1) 100%);
-            border-radius: 50%;
-            transform: translate(-50%, 50%);
-        }
-
-        .tech-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .tech-feature {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        .value-card-organic:hover { background: rgba(30,158,56,0.12); transform: translateY(-8px); border-color: rgba(45,184,74,0.5); }
+        .process-step-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: all 0.3s ease;
         }
-
-        .tech-feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .process-step-card:hover { background: rgba(45,184,74,0.1); transform: translateY(-6px); border-color: #2db84a; }
+        .team-avatar {
+            background: linear-gradient(135deg, #2db84a, #177d2b);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
-
-        .tech-feature h4 {
-            color: #1e7e34;
-            margin-bottom: 0.5rem;
+        .reveal { opacity: 0; transform: translateY(36px); transition: all 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .mesh-bg-about {
+            background: radial-gradient(ellipse at 30% 20%, rgba(30,158,56,0.25) 0%, transparent 50%),
+                        radial-gradient(ellipse at 85% 70%, rgba(13,70,26,0.5) 0%, transparent 55%),
+                        #07200f;
         }
-
-        /* Process Section */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-            counter-reset: step-counter;
-        }
-
-        .process-step {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            counter-increment: step-counter;
-            border: 2px solid transparent;
-        }
-
-        .process-step::before {
-            content: counter(step-counter);
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .process-step:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(40, 167, 69, 0.15);
-            border-color: #28a745;
-        }
-
-        .process-step:hover::before {
-            background: linear-gradient(135deg, #ffc107, #ffcd38);
-            transform: translateX(-50%) scale(1.1);
-        }
-
-        .process-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .process-step h3 {
-            color: #1e7e34;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        /* Team Section */
-        .team-section {
-            background: #f8f9fa;
-            padding: 80px 2rem;
-            margin: 80px -2rem;
-        }
-
-        .team-section .about-section {
-            margin-bottom: 0;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .team-member {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .team-member::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #1e7e34, #28a745, #ffc107);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .team-member:hover::before {
-            transform: scaleX(1);
-        }
-
-        .team-member:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .member-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.8rem;
-            color: white;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .team-member:hover .member-avatar {
-            transform: scale(1.1);
-        }
-
-        .team-member h3 {
-            color: #1e7e34;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-member .role {
-            color: #28a745;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            padding: 100px 2rem;
-            text-align: center;
-            color: white;
-            border-radius: 20px;
-            margin: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-        }
-
-        .cta-section h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .cta-section p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: #ffc107;
-            color: #1e7e34;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
-            position: relative;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(255, 193, 7, 0.6);
-            background: #ffcd38;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            color: #ffc107;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #ffc107;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 2rem;
-        }
-
-        .footer-bottom p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
+        .mobile-nav { display: none; flex-direction: column; gap: 1rem; padding: 1.5rem 2rem; }
+        .mobile-nav.open { display: flex; }
         @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2.5rem;
-            }
-
-            .page-header p {
-                font-size: 1.1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .about-section h2 {
-                font-size: 2.2rem;
-            }
-
-            .technology-showcase {
-                padding: 2rem;
-            }
-
-            .mission-card, .vision-card {
-                padding: 2rem 1.5rem;
-            }
+            .desktop-nav { display: none; }
+            .hero-title-mobile { font-size: 2.2rem; }
         }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #07200f; }
+        ::-webkit-scrollbar-thumb { background: #2db84a; border-radius: 3px; }
+        .text-gradient { background: linear-gradient(135deg, #66d47e 0%, #f5b800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     </style>
 </head>
 <body>
-    <header id="header">
-        <nav>
-            <div class="logo">
-                <span class="logo-icon"></span><a><img src="assets/AfricanGreenLogo.png" width="80" height="80"></a>
-              
+
+<!-- ░░░ NAVIGATION (identical to index) ░░░ -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+      <img class="font-display font-bold text-white text-lg tracking-tight" src="assets/AfricanGreenLogo.png" alt="African Green Solutions Logo" style="width:90px; height:auto;" />
+        </div>
+        <ul class="desktop-nav hidden md:flex items-center gap-8">
+            <li><a href="index.html" class="nav-link text-white/80 font-body font-medium text-sm">Home</a></li>
+            <li><a href="about.html" class="nav-link text-leaf-300 font-body font-medium text-sm border-b-2 border-leaf-400">About</a></li>
+            <li><a href="services.html" class="nav-link text-white/80 font-body font-medium text-sm">Services</a></li>
+            <li><a href="contact.html" class="nav-link text-white/80 font-body font-medium text-sm">Contact</a></li>
+            <li><a href="contact.html" class="btn-glow px-5 py-2 rounded-full font-display font-semibold text-sm text-white">Get Started</a></li>
+        </ul>
+        <button id="menuBtn" class="md:hidden text-white text-2xl">☰</button>
+    </div>
+    <div id="mobileMenu" class="mobile-nav glass-dark">
+        <a href="index.html" class="text-white/80 font-medium hover:text-leaf-400">Home</a>
+        <a href="about.html" class="text-leaf-300 font-medium">About</a>
+        <a href="services.html" class="text-white/80 font-medium hover:text-leaf-400">Services</a>
+        <a href="contact.html" class="text-white/80 font-medium hover:text-leaf-400">Contact</a>
+    </div>
+</nav>
+
+<!-- ░░░ PAGE HERO (glass & floating) ░░░ -->
+<section class="relative pt-40 pb-28 px-6 overflow-hidden" style="background: radial-gradient(ellipse at 70% 30%, #0d461a, #051e0b);">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute w-96 h-96 rounded-full bg-leaf-500/20 blur-3xl -top-20 -right-20 animate-pulseglow"></div>
+        <div class="absolute w-80 h-80 rounded-full bg-amber-400/10 blur-3xl bottom-10 left-10 animate-float"></div>
+        <div class="spin-ring" style="width:400px;height:400px;top:20%;left:-10%;opacity:0.2;border:1px solid #2db84a;border-radius:50%;position:absolute;animation:spinSlow 20s linear infinite;"></div>
+    </div>
+    <div class="max-w-5xl mx-auto text-center relative z-2">
+        <div class="glass inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 animate-float">
+            <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulseglow"></span>
+            <span class="text-leaf-300 font-body text-xs font-medium tracking-wide">Proudly South African · Since 2020</span>
+        </div>
+        <h1 class="font-display font-extrabold text-5xl md:text-7xl text-white leading-tight mb-5" style="letter-spacing:-2px;">About <span class="text-gradient">African Green</span><br/>Solutions</h1>
+        <p class="font-body text-white/70 text-lg md:text-xl max-w-2xl mx-auto">Pioneering renewable energy & biogas innovation — turning organic waste into power, prosperity, and a cleaner tomorrow.</p>
+    </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-40"><div class="w-px h-12 bg-gradient-to-t from-leaf-400 to-transparent"></div></div>
+</section>
+
+<!-- ░░░ OUR STORY + TIMELINE (glass, reveals) ░░░ -->
+<section class="py-24 px-6 mesh-bg-about">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-14 items-center">
+            <div class="reveal">
+                <p class="font-body text-leaf-400 text-sm font-semibold tracking-wider uppercase mb-3">Our story</p>
+                <h2 class="font-display font-extrabold text-4xl md:text-5xl text-white leading-tight mb-6">From Vision to <span class="text-gradient">Green Revolution</span></h2>
+                <p class="font-body text-white/70 leading-relaxed mb-5">African Green Solutions is a pioneering renewable energy company specializing in the manufacturing and installation of anaerobic digestors for biogas production. Founded with a vision to transform Africa’s energy landscape, we provide environmentally friendly solutions for organic waste while addressing the continent’s energy demand.</p>
+                <p class="font-body text-white/70 leading-relaxed mb-6">Based in Vaal, Gauteng, we are a proudly South African company dedicated to creating a cleaner, greener future through innovative biogas technology. Our expertise blends renewable energy, engineering, and environmental management to deliver cutting-edge systems that benefit both planet and people.</p>
+                <div class="glass-leaf rounded-2xl p-5">
+                    <p class="italic text-white/80 text-sm">“Fuel the planet with what it feeds on — turning yesterday’s waste into tomorrow’s energy.”</p>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" style="color: #ffc107;">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">☰</div>
-        </nav>
-    </header>
-
-    <section class="page-header">
-        <h1>About African Green Solutions</h1>
-        <p>Pioneering renewable energy solutions for a sustainable African future</p>
-    </section>
-
-    <section class="about-content">
-        <div class="about-section" id="our-story">
-            <h2>Our Story</h2>
-            <p>African Green Solutions is a pioneering renewable energy company specializing in the manufacturing and installation of anaerobic digestors for biogas production. Founded with a vision to transform Africa's energy landscape, we are committed to providing environmentally friendly, long-term solutions for managing organic waste while addressing the continent's growing demand for sustainable energy.</p>
-            <p>Based in Vaal, Gauteng, we are a proudly South African, limited liability company dedicated to creating a cleaner and greener future through innovative biogas technology. Our team brings together expertise in renewable energy, engineering, and environmental management to deliver cutting-edge solutions that benefit both people and the planet.</p>
-            
-            <div class="story-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-year">2020</div>
-                    <p>Company founded with a vision to transform organic waste into renewable energy across Africa</p>
+            <div class="reveal relative" style="transition-delay:0.15s">
+                <div class="glass rounded-3xl p-6 backdrop-blur-sm border border-white/10">
+                    <div class="timeline-organic pl-8 space-y-6">
+                        <div class="relative"><div class="timeline-dot"></div><div class="timeline-year font-display font-bold text-leaf-400 text-lg">2020</div><p class="text-white/70 text-sm">Company founded with a mission to transform organic waste into renewable energy across Africa.</p></div>
+                        <div class="relative"><div class="timeline-dot"></div><div class="timeline-year font-display font-bold text-leaf-400 text-lg">2021</div><p class="text-white/70 text-sm">First major biogas installation for an agricultural facility in Gauteng.</p></div>
+                        <div class="relative"><div class="timeline-dot"></div><div class="timeline-year font-display font-bold text-leaf-400 text-lg">2022</div><p class="text-white/70 text-sm">Expanded operations to commercial & municipal clients across South Africa.</p></div>
+                        <div class="relative"><div class="timeline-dot"></div><div class="timeline-year font-display font-bold text-leaf-400 text-lg">2023</div><p class="text-white/70 text-sm">Launched comprehensive maintenance & support division.</p></div>
+                        <div class="relative"><div class="timeline-dot"></div><div class="timeline-year font-display font-bold text-leaf-400 text-lg">2024+</div><p class="text-white/70 text-sm">R&D for next-gen biogas optimisation & scalable digestors.</p></div>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2021</div>
-                    <p>Completed our first major biogas installation for an agricultural facility in Gauteng</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2022</div>
-                    <p>Expanded operations to serve commercial and municipal clients across South Africa</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2023</div>
-                    <p>Launched our comprehensive maintenance and support services division</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2024</div>
-                    <p>Began research and development on next-generation biogas optimization technologies</p>
-                </div>
+                <div class="blob-2 absolute -bottom-6 -right-6 w-28 h-28 bg-leaf-400/10 rounded-full blur-xl -z-0"></div>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="about-section" id="mission-vision">
-            <h2>Our Mission & Vision</h2>
-            <div class="mission-vision">
-                <div class="mission-card">
-                    <span class="mission-icon">🎯</span>
-                    <h3>Our Mission</h3>
-                    <p>To provide innovative, sustainable biogas solutions that transform organic waste into clean energy, reducing environmental impact while creating economic opportunities for communities across Africa.</p>
-                </div>
-                <div class="vision-card">
-                    <span class="vision-icon">🔭</span>
-                    <h3>Our Vision</h3>
-                    <p>To be Africa's leading provider of renewable energy solutions, powering a greener future where sustainable energy is accessible to all and organic waste is valued as a resource rather than a problem.</p>
-                </div>
+<!-- ░░░ MISSION & VISION (cards) ░░░ -->
+<section class="py-24 px-6" style="background:#07200f;">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14 reveal">
+            <p class="font-body text-amber-400 text-sm font-semibold tracking-wider uppercase">Core Purpose</p>
+            <h2 class="font-display font-extrabold text-5xl text-white mt-2">Our <span class="text-gradient">Mission & Vision</span></h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass rounded-3xl p-8 md:p-10 text-center hover:-translate-y-2 transition-all duration-500 reveal">
+                <div class="text-6xl mb-5">🎯</div>
+                <h3 class="font-display font-bold text-2xl text-leaf-300 mb-4">Mission</h3>
+                <p class="text-white/70 leading-relaxed">To provide innovative, sustainable biogas solutions that transform organic waste into clean energy, reducing environmental impact while creating economic opportunities for communities across Africa.</p>
+            </div>
+            <div class="glass rounded-3xl p-8 md:p-10 text-center hover:-translate-y-2 transition-all duration-500 reveal" style="transition-delay:0.1s">
+                <div class="text-6xl mb-5">🔭</div>
+                <h3 class="font-display font-bold text-2xl text-amber-400 mb-4">Vision</h3>
+                <p class="text-white/70 leading-relaxed">To be Africa’s leading provider of renewable energy solutions, powering a greener future where sustainable energy is accessible to all and organic waste is valued as a resource.</p>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="about-section" id="our-values">
-            <h2>Our Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <span class="value-icon">🌱</span>
-                    <h3>Sustainability</h3>
-                    <p>We are committed to solutions that protect our environment and promote long-term ecological balance for future generations.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">💡</span>
-                    <h3>Innovation</h3>
-                    <p>We continuously develop and implement cutting-edge technologies to improve efficiency and effectiveness of our biogas solutions.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">🤝</span>
-                    <h3>Partnership</h3>
-                    <p>We work collaboratively with communities, businesses, and governments to achieve shared sustainability goals and create lasting impact.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">🔬</span>
-                    <h3>Excellence</h3>
-                    <p>We maintain the highest standards in design, installation, and maintenance of all our biogas systems, ensuring reliability and performance.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">🌍</span>
-                    <h3>Environmental Stewardship</h3>
-                    <p>We take responsibility for protecting natural resources and reducing carbon footprint through our sustainable energy solutions.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">🚀</span>
-                    <h3>Growth & Development</h3>
-                    <p>We invest in our team, technology, and communities to drive continuous improvement and expand access to clean energy.</p>
-                </div>
-            </div>
+<!-- ░░░ VALUES (6 cards - same aesthetic) ░░░ -->
+<section class="py-20 px-6 mesh-bg-about">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14 reveal">
+            <p class="font-body text-leaf-400 text-sm font-semibold tracking-wider uppercase">What we stand for</p>
+            <h2 class="font-display font-extrabold text-5xl text-white">Our <span class="text-gradient">Core Values</span></h2>
         </div>
-
-        <div class="about-section" id="our-technology">
-            <h2>Our Technology</h2>
-            <p>At the heart of our operations is anaerobic digestion technology - a natural process where microorganisms break down organic matter in the absence of oxygen. This process produces biogas, a renewable energy source primarily composed of methane, which can be used for heating, cooking, and electricity generation.</p>
-            <p>Our custom-designed anaerobic digestors are engineered to efficiently process various organic waste streams, including agricultural waste, food waste, and animal manure. The by-product of this process is a nutrient-rich organic fertilizer that completes the cycle of sustainability.</p>
-            
-            <div class="technology-showcase">
-                <h3 style="color: #1e7e34; margin-bottom: 1.5rem;">Technology Advantages</h3>
-                <div class="tech-features">
-                    <div class="tech-feature">
-                        <h4>High Efficiency</h4>
-                        <p>Our digestors achieve up to 85% conversion efficiency of organic waste to biogas</p>
-                    </div>
-                    <div class="tech-feature">
-                        <h4>Modular Design</h4>
-                        <p>Scalable systems that can grow with your energy needs and waste volumes</p>
-                    </div>
-                    <div class="tech-feature">
-                        <h4>Low Maintenance</h4>
-                        <p>Automated systems with remote monitoring for minimal operational requirements</p>
-                    </div>
-                    <div class="tech-feature">
-                        <h4>Dual Output</h4>
-                        <p>Produces both clean energy and organic fertilizer from the same process</p>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 style="margin-top: 3rem; color: #1e7e34; font-size: 2rem;">The Biogas Process</h3>
-            <div class="process-steps">
-                <div class="process-step">
-                    <span class="process-icon">🗑️</span>
-                    <h3>Waste Collection</h3>
-                    <p>Organic waste materials are collected from various sources including farms, food processing facilities, and households.</p>
-                </div>
-                <div class="process-step">
-                    <span class="process-icon">⚗️</span>
-                    <h3>Anaerobic Digestion</h3>
-                    <p>Waste is processed in our sealed digestors where microorganisms break it down in oxygen-free conditions.</p>
-                </div>
-                <div class="process-step">
-                    <span class="process-icon">💨</span>
-                    <h3>Biogas Production</h3>
-                    <p>The digestion process releases biogas, primarily methane, which is captured and stored for energy use.</p>
-                </div>
-                <div class="process-step">
-                    <span class="process-icon">⚡</span>
-                    <h3>Energy Generation</h3>
-                    <p>Biogas is used for heating, cooking, or converted to electricity through generators.</p>
-                </div>
-                <div class="process-step">
-                    <span class="process-icon">🌿</span>
-                    <h3>Fertilizer Production</h3>
-                    <p>The remaining digestate is processed into high-quality organic fertilizer for agricultural use.</p>
-                </div>
-            </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="value-card-organic rounded-2xl p-7 text-center reveal"><div class="text-5xl mb-4">🌱</div><h3 class="font-display font-bold text-xl text-white mb-2">Sustainability</h3><p class="text-white/60 text-sm">Solutions that protect our environment and promote long-term ecological balance.</p></div>
+            <div class="value-card-organic rounded-2xl p-7 text-center reveal" style="transition-delay:0.1s"><div class="text-5xl mb-4">💡</div><h3 class="font-display font-bold text-xl text-white mb-2">Innovation</h3><p class="text-white/60 text-sm">Cutting-edge technology to improve efficiency and effectiveness of biogas systems.</p></div>
+            <div class="value-card-organic rounded-2xl p-7 text-center reveal" style="transition-delay:0.2s"><div class="text-5xl mb-4">🤝</div><h3 class="font-display font-bold text-xl text-white mb-2">Partnership</h3><p class="text-white/60 text-sm">Collaborating with communities, businesses & governments for shared impact.</p></div>
+            <div class="value-card-organic rounded-2xl p-7 text-center reveal" style="transition-delay:0.3s"><div class="text-5xl mb-4">🔬</div><h3 class="font-display font-bold text-xl text-white mb-2">Excellence</h3><p class="text-white/60 text-sm">Highest standards in design, installation, and maintenance.</p></div>
+            <div class="value-card-organic rounded-2xl p-7 text-center reveal" style="transition-delay:0.4s"><div class="text-5xl mb-4">🌍</div><h3 class="font-display font-bold text-xl text-white mb-2">Stewardship</h3><p class="text-white/60 text-sm">Protecting natural resources and reducing carbon footprint.</p></div>
+            <div class="value-card-organic rounded-2xl p-7 text-center reveal" style="transition-delay:0.5s"><div class="text-5xl mb-4">🚀</div><h3 class="font-display font-bold text-xl text-white mb-2">Growth</h3><p class="text-white/60 text-sm">Investing in team, technology, and communities to expand clean energy access.</p></div>
         </div>
+    </div>
+</section>
 
-        <div class="team-section">
-            <div class="about-section" id="our-team">
-                <h2>Our Leadership Team</h2>
-                <p>Our experienced leadership team brings together diverse expertise in renewable energy, engineering, finance, and operations to drive our mission forward.</p>
-                
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-avatar">BM</div>
-                        <h3>Mr. Bokang Masango</h3>
-                        <p class="role">Chief Executive Officer</p>
-                        <p>3 years of experience in the biogas field with a background in renewable energy systems and sustainable development.</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-avatar">LM</div>
-                        <h3>Mr. Lucky Motshele</h3>
-                        <p class="role">Chief Operations Officer</p>
-                        <p>4 years of experience in wastewater management and biogas system operations, ensuring optimal performance of all installations.</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-avatar">NN</div>
-                        <h3>Ms. Nhlanhla Nyambose</h3>
-                        <p class="role">Chief Financial Officer</p>
-                        <p>Over 3 years of experience in financial management, specializing in sustainable energy project financing and economic modeling.</p>
+<!-- ░░░ TECHNOLOGY & PROCESS (glass + steps) ░░░ -->
+<section class="py-24 px-6" style="background:#07200f;">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14 reveal">
+            <p class="font-body text-leaf-400 text-sm font-semibold tracking-wider uppercase">Anaerobic digestion</p>
+            <h2 class="font-display font-extrabold text-5xl text-white">Power of <span class="text-gradient">Biogas Technology</span></h2>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <div class="reveal">
+                <div class="glass rounded-2xl p-6 mb-6"><p class="text-white/80 text-base leading-relaxed">At the heart of our operations lies anaerobic digestion — a natural process where microorganisms break down organic matter in oxygen-free conditions. The result is biogas (methane-rich) for heating, cooking, and electricity, plus nutrient-rich organic fertilizer.</p></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-leaf p-4 rounded-xl text-center"><span class="text-2xl font-display font-bold text-leaf-400">85%</span><p class="text-white/60 text-xs">Conversion efficiency</p></div>
+                    <div class="glass-leaf p-4 rounded-xl text-center"><span class="text-2xl font-display font-bold text-amber-400">Zero</span><p class="text-white/60 text-xs">Landfill waste</p></div>
+                    <div class="glass-leaf p-4 rounded-xl text-center"><span class="text-2xl font-display font-bold text-leaf-400">Dual</span><p class="text-white/60 text-xs">Energy + Fertilizer</p></div>
+                    <div class="glass-leaf p-4 rounded-xl text-center"><span class="text-2xl font-display font-bold text-amber-400">Scalable</span><p class="text-white/60 text-xs">Modular digestors</p></div>
+                </div>
+            </div>
+            <div class="reveal relative" style="transition-delay:0.1s">
+                <div class="glass-dark rounded-3xl p-6 border-l-4 border-leaf-400">
+                    <h3 class="font-display text-2xl text-white mb-3">Full-cycle process</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-3 items-start"><span class="text-leaf-400 font-bold text-xl">1.</span><div><span class="font-bold text-white">Waste Collection</span><p class="text-white/60 text-sm">Agricultural, food, and animal manure streams.</p></div></div>
+                        <div class="flex gap-3 items-start"><span class="text-leaf-400 font-bold text-xl">2.</span><div><span class="font-bold text-white">Anaerobic Digestion</span><p class="text-white/60 text-sm">Sealed digestors break down organic matter.</p></div></div>
+                        <div class="flex gap-3 items-start"><span class="text-leaf-400 font-bold text-xl">3.</span><div><span class="font-bold text-white">Biogas Capture</span><p class="text-white/60 text-sm">Methane-rich gas stored & purified.</p></div></div>
+                        <div class="flex gap-3 items-start"><span class="text-leaf-400 font-bold text-xl">4.</span><div><span class="font-bold text-white">Energy Generation</span><p class="text-white/60 text-sm">Electricity, heat, or cooking fuel.</p></div></div>
+                        <div class="flex gap-3 items-start"><span class="text-leaf-400 font-bold text-xl">5.</span><div><span class="font-bold text-white">Organic Fertilizer</span><p class="text-white/60 text-sm">Digestate processed into premium bio-fertilizer.</p></div></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="cta-section">
-        <h2>Ready to Power a Greener Future?</h2>
-        <p>Join us in our mission to transform organic waste into clean, renewable energy. Contact us today to learn how African Green Solutions can help your business or community.</p>
-        <a href="contact.html" class="cta-button">Get In Touch</a>
-    </section>
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+            <div class="process-step-card rounded-2xl p-6 text-center reveal"><div class="text-4xl mb-3">🏗️</div><h4 class="font-display font-bold text-leaf-300">High Efficiency</h4><p class="text-white/60 text-sm">Up to 85% conversion of organic waste to biogas.</p></div>
+            <div class="process-step-card rounded-2xl p-6 text-center reveal" style="transition-delay:0.1s"><div class="text-4xl mb-3">📦</div><h4 class="font-display font-bold text-leaf-300">Modular Design</h4><p class="text-white/60 text-sm">Scalable systems that grow with your needs.</p></div>
+            <div class="process-step-card rounded-2xl p-6 text-center reveal" style="transition-delay:0.2s"><div class="text-4xl mb-3">🤖</div><h4 class="font-display font-bold text-leaf-300">Low Maintenance</h4><p class="text-white/60 text-sm">Automated with remote monitoring.</p></div>
+        </div>
+    </div>
+</section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <span class="logo-icon"></span><a><img src="assets/AfricanGreenLogo.png" width="80" height="80"></a>
-                <p>Pioneering renewable energy solutions for a sustainable African future through innovative biogas technology.</p>
+<!-- ░░░ LEADERSHIP TEAM (enhanced) ░░░ -->
+<section class="py-28 px-6 mesh-bg-about">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <p class="font-body text-amber-400 text-sm font-semibold tracking-wider uppercase">The people behind the movement</p>
+            <h2 class="font-display font-extrabold text-5xl text-white">Our <span class="text-gradient">Leadership</span></h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass rounded-3xl p-8 text-center hover:scale-[1.02] transition-all duration-400 reveal">
+                <div class="team-avatar w-28 h-28 rounded-full mx-auto mb-5 flex items-center justify-center text-3xl font-display font-bold text-white">BM</div>
+                <h3 class="font-display font-bold text-2xl text-white">Mr. Bokang Masango</h3>
+                <p class="text-leaf-400 font-semibold mb-3">Chief Executive Officer</p>
+                <p class="text-white/60 text-sm">3 years of specialized biogas experience, driving Africa’s energy transition with sustainable innovation.</p>
             </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+            <div class="glass rounded-3xl p-8 text-center hover:scale-[1.02] transition-all duration-400 reveal" style="transition-delay:0.1s">
+                <div class="team-avatar w-28 h-28 rounded-full mx-auto mb-5 flex items-center justify-center text-3xl font-display font-bold text-white">LM</div>
+                <h3 class="font-display font-bold text-2xl text-white">Mr. Lucky Motshele</h3>
+                <p class="text-amber-400 font-semibold mb-3">Chief Operations Officer</p>
+                <p class="text-white/60 text-sm">4 years expertise in wastewater management & biogas system optimisation.</p>
             </div>
-            <div class="footer-column">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="services.html">Digestor Design & Installation</a></li>
-                    <li><a href="services.html">Maintenance Services</a></li>
-                    <li><a href="services.html">Feasibility Studies</a></li>
-                    <li><a href="services.html">Biogas Supply</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <ul class="footer-links">
-                    <li>📞 083 892 4162</li>
-                    <li>📧 africangreensolutions@gmail.com</li>
-                    <li>📍 252 Wellington Street, Ironside, Gauteng, 1984</li>
-                </ul>
+            <div class="glass rounded-3xl p-8 text-center hover:scale-[1.02] transition-all duration-400 reveal" style="transition-delay:0.2s">
+                <div class="team-avatar w-28 h-28 rounded-full mx-auto mb-5 flex items-center justify-center text-3xl font-display font-bold text-white">NN</div>
+                <h3 class="font-display font-bold text-2xl text-white">Ms. Nhlanhla Nyambose</h3>
+                <p class="text-leaf-400 font-semibold mb-3">Chief Financial Officer</p>
+                <p class="text-white/60 text-sm">Over 3 years of financial management, sustainable project financing & economic modeling.</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
-            <p>Powering a Greener Future</p>
+    </div>
+</section>
+
+<!-- ░░░ CTA SECTION (same as index vibe) ░░░ -->
+<section class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #0d461a, #06220c);">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1000&q=80')] bg-cover bg-center opacity-10"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-2">
+        <h2 class="font-display font-extrabold text-4xl md:text-6xl text-white mb-5">Ready to Power a <span class="text-gradient">Greener Future?</span></h2>
+        <p class="font-body text-white/70 text-lg mb-8">Join us in transforming organic waste into clean, renewable energy. Let’s build a sustainable tomorrow together.</p>
+        <a href="contact.html" class="btn-glow inline-block px-10 py-4 rounded-full font-display font-bold text-white text-lg shadow-2xl">Get In Touch →</a>
+    </div>
+</section>
+
+<!-- ░░░ FOOTER (same as index) ░░░ -->
+<footer style="background:#030f06; border-top:1px solid rgba(45,184,74,0.15);" class="py-16 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-10 mb-12">
+            <div class="md:col-span-2"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-leaf-400 to-leaf-600 flex items-center justify-center text-sm font-display font-bold text-white">AG</div><span class="font-display font-bold text-white text-lg">African Green Solutions</span></div><p class="font-body text-white/50 text-sm max-w-xs">Pioneering renewable energy solutions for a sustainable African future through innovative biogas technology.</p><p class="font-body text-leaf-400/60 text-xs mt-4 italic">Fuel the planet with what it feeds on.</p></div>
+            <div><h4 class="font-display font-bold text-white text-sm mb-5">Quick Links</h4><ul class="space-y-3"><li><a href="index.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Home</a></li><li><a href="about.html" class="font-body text-white/50 text-sm hover:text-leaf-400">About Us</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Services</a></li><li><a href="contact.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Contact</a></li></ul></div>
+            <div><h4 class="font-display font-bold text-white text-sm mb-5">Services</h4><ul class="space-y-3"><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Digestor Design</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Maintenance</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Feasibility Studies</a></li><li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400">Biogas Supply</a></li></ul></div>
         </div>
-    </footer>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);" class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4"><p class="font-body text-white/35 text-xs">© 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p><p class="font-body text-leaf-400/50 text-xs">Powering a Greener Future</p></div>
+    </div>
+</footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Scroll animation for sections
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.about-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').style.display = 'none';
-                    }
-                }
-            });
-        });
-    </script>
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const el = document.querySelector(a.getAttribute('href')); if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+</script>
 </body>
 </html>

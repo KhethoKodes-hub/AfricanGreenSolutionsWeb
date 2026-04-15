@@ -1,1211 +1,882 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>African Green Solutions - Powering a Greener Future</title>
-    <link href="assets/AfricanGreenLogo.png" rel="icon" type="image/png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #2d3436;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            padding: 0.5rem 0;
-            background: rgba(30, 126, 52, 0.98);
-            backdrop-filter: blur(10px);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            font-size: 1.8rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: #ffc107;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(30, 126, 52, 0.95) 0%, rgba(40, 167, 69, 0.95) 100%),
-                        url('./assets/bigashero.png');
-            background-size: cover;
-            background-position: center;
-            padding: 180px 2rem 120px;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0%, 100% { left: -100%; }
-            50% { left: 100%; }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1.4s ease;
-            max-width: 700px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            animation: fadeInUp 1.6s ease;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: #ffc107;
-            color: #1e7e34;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
-            background: #ffcd38;
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: #ffc107;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: white;
-            padding: 60px 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #1e7e34;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .stat-label {
-            color: #555;
-            font-size: 1rem;
-        }
-
-        /* About Section */
-        .about {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-content h2 {
-            font-size: 2.5rem;
-            color: #1e7e34;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .about-content h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60%;
-            height: 4px;
-            background: linear-gradient(90deg, #28a745, #ffc107);
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #555;
-        }
-
-        .biogas-info {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border-left: 5px solid #28a745;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .biogas-info::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, #1e7e34, #28a745, #ffc107);
-        }
-
-        .biogas-info:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
-        .biogas-info h3 {
-            color: #1e7e34;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        /* Services Section */
-        .services {
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            padding: 80px 2rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .services::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-            background-size: cover;
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .services-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.15);
-            border-color: #ffc107;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            opacity: 0.9;
-        }
-
-        /* Benefits Section */
-        .benefits {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 2rem;
-        }
-
-        .benefits h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #1e7e34;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .benefits h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #28a745, #ffc107);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .benefit-item {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-top: 4px solid #28a745;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .benefit-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, rgba(255, 193, 7, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .benefit-item:hover::before {
-            opacity: 1;
-        }
-
-        .benefit-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
-            border-top-color: #ffc107;
-        }
-
-        .benefit-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .benefit-item:hover .benefit-icon {
-            transform: scale(1.1);
-        }
-
-        .benefit-item h3 {
-            color: #1e7e34;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .benefit-item p {
-            color: #555;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Process Section */
-        .process {
-            background: #f8f9fa;
-            padding: 80px 2rem;
-        }
-
-        .process h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #1e7e34;
-            margin-bottom: 3rem;
-        }
-
-        .process-steps {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 50px;
-            left: 10%;
-            right: 10%;
-            height: 3px;
-            background: #28a745;
-            z-index: 1;
-        }
-
-        .process-step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            flex: 1;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: #28a745;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .process-step:hover .step-number {
-            background: #ffc107;
-            transform: scale(1.1);
-        }
-
-        .step-title {
-            font-weight: 600;
-            color: #1e7e34;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Leadership Section */
-        .leadership {
-            background: white;
-            padding: 80px 2rem;
-        }
-
-        .leadership h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #1e7e34;
-            margin-bottom: 3rem;
-        }
-
-        .leadership-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .leader-card {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .leader-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #1e7e34, #28a745, #ffc107);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .leader-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .leader-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .leader-avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: white;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .leader-card:hover .leader-avatar {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .leader-card h3 {
-            color: #1e7e34;
-            margin-bottom: 0.5rem;
-        }
-
-        .leader-card .role {
-            color: #28a745;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
-            padding: 80px 2rem;
-            color: white;
-        }
-
-        .testimonials h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .testimonials-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .testimonial-text::before {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            top: -20px;
-            left: -10px;
-            opacity: 0.3;
-            line-height: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #ffc107;
-            border-radius: 50%;
-            margin-right: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #1e7e34;
-        }
-
-        .author-info h4 {
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info p {
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: white;
-            padding: 80px 2rem;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            color: #1e7e34;
-            margin-bottom: 1rem;
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            color: #555;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-info {
-            max-width: 800px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-item {
-            background: #f8f9fa;
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .contact-item:hover {
-            background: white;
-            border-color: #28a745;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .contact-item h3 {
-            color: #1e7e34;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            color: #ffc107;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #ffc107;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 2rem;
-        }
-
-        .footer-bottom p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .process-steps {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .process-steps::before {
-                display: none;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>African Green Solutions — Powering a Greener Future</title>
+  <link href="assets/AfricanGreenLogo.png" rel="icon" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            leaf: { 50: '#f0faf2', 100: '#d6f5dc', 200: '#a8e9b4', 300: '#66d47e', 400: '#2db84a', 500: '#1e9e38', 600: '#177d2b', 700: '#126122', 800: '#0d461a', 900: '#072e10' },
+            amber: { 400: '#f5b800', 500: '#d9a200', 600: '#b88800' },
+            earth: { 100: '#f7f3ee', 200: '#ede5d8', 300: '#d4c4a8', 400: '#b09070' },
+          },
+          backgroundImage: {
+            'hero-img': "url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80')",
+            'biogas-plant': "url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200&q=80')",
+            'organic-field': "url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80')",
+            'africa-sky': "url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1600&q=80')",
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-18px)' } },
+            pulseglow: { '0%,100%': { opacity: '0.5', transform: 'scale(1)' }, '50%': { opacity: '1', transform: 'scale(1.08)' } },
+            reveal: { from: { opacity: '0', transform: 'translateY(40px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            spinSlow: { from: { transform: 'rotate(0deg)' }, to: { transform: 'rotate(360deg)' } },
+            shimmer: { '0%': { backgroundPosition: '-400px 0' }, '100%': { backgroundPosition: '400px 0' } },
+            bubble: { '0%,100%': { transform: 'translateY(0) scale(1)', opacity: '0.7' }, '50%': { transform: 'translateY(-30px) scale(1.1)', opacity: '1' } },
+            marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } },
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            'float-slow': 'float 9s ease-in-out infinite',
+            pulseglow: 'pulseglow 3s ease-in-out infinite',
+            reveal: 'reveal 0.8s ease forwards',
+            spinSlow: 'spinSlow 18s linear infinite',
+            shimmer: 'shimmer 2.5s linear infinite',
+            bubble: 'bubble 4s ease-in-out infinite',
+            marquee: 'marquee 30s linear infinite',
+          },
+        }
+      }
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #07200f; color: #fff; overflow-x: hidden; }
+
+    /* Glassmorphism base */
+    .glass { background: rgba(255,255,255,0.07); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.13); }
+    .glass-dark { background: rgba(7,32,15,0.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(45,184,74,0.2); }
+    .glass-leaf { background: rgba(30,158,56,0.15); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(45,184,74,0.25); }
+
+    /* Mesh gradient bg */
+    .mesh-bg {
+      background: radial-gradient(ellipse at 20% 10%, #1e9e38 0%, transparent 45%),
+                  radial-gradient(ellipse at 80% 80%, #0d461a 0%, transparent 50%),
+                  radial-gradient(ellipse at 60% 20%, #177d2b 0%, transparent 35%),
+                  #07200f;
+    }
+    .mesh-bg-2 {
+      background: radial-gradient(ellipse at 80% 10%, rgba(30,158,56,0.35) 0%, transparent 50%),
+                  radial-gradient(ellipse at 10% 90%, rgba(245,184,0,0.15) 0%, transparent 45%),
+                  #07200f;
+    }
+
+    /* Organic blob shapes */
+    .blob { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+    .blob-2 { border-radius: 37% 63% 46% 54% / 48% 55% 45% 52%; }
+
+    /* Nav */
+    #nav {
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+    #nav.scrolled {
+      background: rgba(7,32,15,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(45,184,74,0.2);
+    }
+    .nav-link { position: relative; transition: color 0.3s; }
+    .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:linear-gradient(90deg,#2db84a,#f5b800); transition:width 0.35s ease; border-radius:2px; }
+    .nav-link:hover::after { width:100%; }
+    .nav-link:hover { color: #66d47e; }
+
+    /* Hero */
+    .hero-section {
+      min-height: 100vh;
+      background-image:
+        linear-gradient(180deg, rgba(7,32,15,0.65) 0%, rgba(7,32,15,0.45) 40%, rgba(7,32,15,0.8) 100%),
+        url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(30,158,56,0.3) 0%, transparent 55%),
+                  radial-gradient(ellipse at 75% 30%, rgba(245,184,0,0.12) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    /* Animated bubbles */
+    .bubble-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .bubble-item {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(45,184,74,0.3);
+      background: radial-gradient(circle at 30% 30%, rgba(45,184,74,0.15), transparent);
+      animation: bubble 6s ease-in-out infinite;
+    }
+
+    /* CTA glow button */
+    .btn-glow {
+      position: relative;
+      background: linear-gradient(135deg, #2db84a 0%, #1e9e38 100%);
+      border: none; outline: none;
+      transition: all 0.35s ease;
+      overflow: hidden;
+    }
+    .btn-glow::before {
+      content:'';
+      position:absolute;inset:0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-glow:hover::before { opacity: 1; }
+    .btn-glow:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 30px rgba(45,184,74,0.5), 0 10px 30px rgba(0,0,0,0.3); }
+    .btn-glow:active { transform: scale(0.98); }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.35);
+      transition: all 0.35s ease;
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #2db84a; color: #66d47e; transform: translateY(-2px); }
+
+    /* Stats ticker */
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(45,184,74,0.2);
+      transition: all 0.4s ease;
+      position: relative; overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height:2px;
+      background: linear-gradient(90deg, transparent, #2db84a, #f5b800, transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    .stat-card:hover::before { transform: translateX(0); }
+    .stat-card:hover { background: rgba(45,184,74,0.12); border-color: rgba(45,184,74,0.5); transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 40px rgba(45,184,74,0.1); }
+
+    /* Service cards */
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(45,184,74,0.1) 0%, rgba(245,184,0,0.05) 100%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .service-card:hover { transform: translateY(-12px) scale(1.02); border-color: rgba(45,184,74,0.4); box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 60px rgba(45,184,74,0.12); }
+    .service-card:hover::after { opacity: 1; }
+    .service-icon-wrap { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .service-card:hover .service-icon-wrap { transform: scale(1.18) rotate(-5deg); }
+
+    /* Benefit cards */
+    .benefit-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: all 0.4s ease;
+      position: relative; overflow: hidden;
+    }
+    .benefit-card:hover { transform: translateY(-8px); background: rgba(30,158,56,0.12); border-color: rgba(45,184,74,0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1); }
+    .benefit-num { font-family: 'Syne', sans-serif; font-size: 4.5rem; font-weight: 800; line-height: 1; color: rgba(45,184,74,0.15); position: absolute; top: 0.5rem; right: 1rem; transition: color 0.4s; }
+    .benefit-card:hover .benefit-num { color: rgba(45,184,74,0.3); }
+
+    /* Process line */
+    .process-line { position: relative; }
+    .process-line::before {
+      content:''; position:absolute; top: 28px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45,184,74,0.5), rgba(245,184,0,0.5), transparent);
+    }
+    .process-dot {
+      width: 56px; height: 56px;
+      background: rgba(7,32,15,0.9);
+      border: 2px solid #2db84a;
+      transition: all 0.35s ease;
+      position: relative; z-index: 2;
+    }
+    .process-dot:hover { background: #2db84a; border-color: #f5b800; box-shadow: 0 0 30px rgba(45,184,74,0.5); transform: scale(1.15); }
+
+    /* Leader card */
+    .leader-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.4s ease;
+      position: relative; overflow: hidden;
+    }
+    .leader-card::before {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+      background: linear-gradient(90deg, #2db84a, #f5b800);
+      transform: scaleX(0); transition: transform 0.4s ease;
+      transform-origin: left;
+    }
+    .leader-card:hover::before { transform: scaleX(1); }
+    .leader-card:hover { background: rgba(30,158,56,0.1); transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.35); }
+    .avatar { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .leader-card:hover .avatar { transform: scale(1.1) rotate(3deg); }
+
+    /* Testimonial */
+    .testi-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.4s ease;
+    }
+    .testi-card:hover { background: rgba(30,158,56,0.1); border-color: rgba(45,184,74,0.3); transform: scale(1.02); }
+
+    /* Marquee */
+    .marquee-wrap { overflow: hidden; white-space: nowrap; }
+    .marquee-inner { display: inline-flex; animation: marquee 30s linear infinite; }
+
+    /* Section reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Organic divider */
+    .organic-divider { height: 80px; overflow: hidden; }
+    .organic-divider svg { width:100%; height:100%; }
+
+    /* Contact section */
+    .contact-section {
+      background-image:
+        linear-gradient(135deg, rgba(7,32,15,0.92) 0%, rgba(13,70,26,0.88) 100%),
+        url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80');
+      background-size: cover; background-position: center;
+    }
+
+    /* Services section */
+    .services-section {
+      background-image:
+        linear-gradient(180deg, rgba(7,32,15,0.95) 0%, rgba(13,70,26,0.88) 50%, rgba(7,32,15,0.95) 100%),
+        url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200&q=80');
+      background-size: cover; background-position: center;
+    }
+
+    /* About image panel */
+    .about-img {
+      background-image:
+        linear-gradient(135deg, rgba(13,70,26,0.7) 0%, rgba(7,32,15,0.5) 100%),
+        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80');
+      background-size: cover; background-position: center;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #07200f; }
+    ::-webkit-scrollbar-thumb { background: #2db84a; border-radius: 3px; }
+
+    /* Highlight text gradient */
+    .text-gradient { background: linear-gradient(135deg, #66d47e 0%, #f5b800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .text-gradient-green { background: linear-gradient(135deg, #a8e9b4, #2db84a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* Spinning ring */
+    .spin-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(45,184,74,0.25);
+      animation: spinSlow 18s linear infinite;
+    }
+    .spin-ring-2 {
+      animation-direction: reverse;
+      animation-duration: 25s;
+    }
+
+    /* Mobile menu */
+    .mobile-nav { display: none; flex-direction: column; gap: 1rem; padding: 1.5rem 2rem; }
+    .mobile-nav.open { display: flex; }
+
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .hero-title { font-size: 2.8rem !important; }
+    }
+  </style>
 </head>
 <body>
-    <header id="header">
-        <nav>
-            <div class="logo">
-                <span class="logo-icon"></span><a><img src="assets/AfricanGreenLogo.png" width="80" height="80"></a>
-                
-            </div>
-            <ul class="nav-links">
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <!--<li><a href="#benefits">Benefits</a></li>-->
-                <!--<li><a href="#process">Process</a></li>-->
-                <!--<li><a href="#leadership">Leadership</a></li>-->
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">☰</div>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <h1>African Green Solutions</h1>
-        <p class="tagline">Fuel the planet with what it feeds on.</p>
-        <p class="subtitle">Your perfect partner for Africa's renewable energy future. We transform organic waste into clean, sustainable energy through innovative biogas technology.</p>
-        <div class="cta-buttons">
-            <a href="#contact" class="cta-button">Get Started Today</a>
-            <a href="#about" class="cta-button secondary">Learn More</a>
-        </div>
-    </section>
+<!-- ░░░ NAVIGATION ░░░ -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img class="font-display font-bold text-white text-lg tracking-tight" src="assets/AfricanGreenLogo.png" alt="African Green Solutions Logo" style="width:90px; height:auto;" />
+    </div>
+    <ul class="desktop-nav hidden md:flex items-center gap-8">
+      <li><a href="about.html" class="nav-link text-white/80 font-body font-medium text-sm">About</a></li>
+      <li><a href="services.html" class="nav-link text-white/80 font-body font-medium text-sm">Services</a></li>
+      <li><a href="contact.html" class="nav-link text-white/80 font-body font-medium text-sm">Contact</a></li>
+      <li><a href="contact.html" class="btn-glow px-5 py-2 rounded-full font-display font-semibold text-sm text-white">Get Started</a></li>
+    </ul>
+    <button id="menuBtn" class="md:hidden text-white text-2xl">☰</button>
+  </div>
+  <div id="mobileMenu" class="mobile-nav glass-dark">
+    <a href="about.html" class="text-white/80 font-medium hover:text-leaf-400 transition-colors">About</a>
+    <a href="services.html" class="text-white/80 font-medium hover:text-leaf-400 transition-colors">Services</a>
+    <a href="contact.html" class="text-white/80 font-medium hover:text-leaf-400 transition-colors">Contact</a>
+  </div>
+</nav>
 
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-item">
-                <span class="stat-number" data-count="50">0</span>
-                <span class="stat-label">Projects Completed</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-count="25">0</span>
-                <span class="stat-label">Tons of Waste Processed Daily</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-count="10000">0</span>
-                <span class="stat-label">Homes Powered</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-count="15">0</span>
-                <span class="stat-label">Years of Combined Experience</span>
-            </div>
-        </div>
-    </section>
+<!-- ░░░ HERO ░░░ -->
+<section class="hero-section flex flex-col items-center justify-center text-center relative" style="min-height:100vh; padding: 160px 1.5rem 100px;">
 
-    <section class="about" id="about">
-        <div class="about-content">
-            <h2>About Us</h2>
-            <p>African Green Solutions is a pioneering renewable energy company specializing in the manufacturing and installation of anaerobic digestors for biogas production.</p>
-            <p>Based in Vaal, Gauteng, we provide environmentally friendly, long-term solutions for managing organic waste while addressing Africa's growing demand for sustainable energy.</p>
-            <p>We are a proudly South African, limited liability company committed to creating a cleaner and greener future through innovative biogas technology.</p>
-            <a href="about.html" class="cta-button" style="margin-top: 1rem;">Read Our Story</a>
-        </div>
-        <div class="biogas-info">
-            <h3>What Is Biogas?</h3>
-            <p>Biogas is a renewable fuel produced through the anaerobic digestion of organic matter (such as food waste, agricultural waste, and animal manure) in oxygen-free conditions.</p>
-            <p>Microorganisms break down this waste inside a sealed anaerobic digester, releasing a mixture of gases—mainly methane, which can be harnessed for heating, cooking, and electricity.</p>
-        </div>
-    </section>
+  <!-- Bubble decorations -->
+  <div class="bubble-wrap">
+    <div class="bubble-item" style="width:220px;height:220px;top:12%;left:5%;animation-delay:0s;animation-duration:7s;"></div>
+    <div class="bubble-item" style="width:100px;height:100px;top:60%;left:8%;animation-delay:2s;animation-duration:5s;"></div>
+    <div class="bubble-item" style="width:160px;height:160px;top:15%;right:6%;animation-delay:1s;animation-duration:9s;"></div>
+    <div class="bubble-item" style="width:80px;height:80px;top:70%;right:10%;animation-delay:3s;animation-duration:6s;"></div>
+    <div class="bubble-item" style="width:300px;height:300px;bottom:5%;left:50%;transform:translateX(-50%);animation-delay:4s;animation-duration:10s;"></div>
+  </div>
 
-    <section class="services" id="services">
-        <h2>Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🏗️</div>
-                <h3>Anaerobic Digestor Design & Installation</h3>
-                <p>Custom-designed digestors tailored to your specific needs and waste streams</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>Maintenance of Digestors</h3>
-                <p>Comprehensive maintenance services to ensure optimal performance</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3>Pre-construction Feasibility Studies</h3>
-                <p>Data-driven analysis to determine the best solution for your project</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🏭</div>
-                <h3>Construction of Biogas Facilities</h3>
-                <p>End-to-end construction of complete biogas production facilities</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <h3>Supply of Biogas & Fertilizer</h3>
-                <p>Providing clean energy and organic fertilizer by-products</p>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="services.html" class="cta-button">View All Services</a>
-        </div>
-    </section>
+  <!-- Spinning rings -->
+  <div class="spin-ring" style="width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.3;"></div>
+  <div class="spin-ring spin-ring-2" style="width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.15;border-style:dashed;"></div>
 
-    <section class="benefits" id="benefits">
-        <h2>The Benefits of Biogas</h2>
-        <div class="benefits-grid">
-            <div class="benefit-item">
-                <span class="benefit-icon">♻️</span>
-                <h3>100% Renewable Energy</h3>
-                <p>Completely sustainable energy source that never runs out</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">🌍</span>
-                <h3>Reduces Emissions</h3>
-                <p>Significantly reduces greenhouse gas emissions</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">💨</span>
-                <h3>Clean Alternative</h3>
-                <p>Provides a clean alternative to fossil fuels</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">🔄</span>
-                <h3>Waste to Value</h3>
-                <p>Converts organic waste into energy and fertilizer</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">🌿</span>
-                <h3>Environmental Conservation</h3>
-                <p>Supports waste management and environmental protection</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-icon">⚡</span>
-                <h3>Energy Independence</h3>
-                <p>Solutions that support energy security and independence</p>
-            </div>
-        </div>
-    </section>
+  <!-- Badge -->
+  <div class="glass inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 animate-float">
+    <span class="w-2 h-2 rounded-full bg-leaf-400 animate-pulseglow inline-block"></span>
+    <span class="text-leaf-300 font-body text-sm font-medium tracking-wide">Proudly South African · Sustainable Energy</span>
+  </div>
 
-    <section class="process" id="process">
-        <h2>Our Process</h2>
-        <div class="process-steps">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <div class="step-title">Consultation</div>
-                <p>We assess your needs and waste streams</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <div class="step-title">Feasibility Study</div>
-                <p>Data analysis to determine project viability</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <div class="step-title">Design</div>
-                <p>Custom solution tailored to your requirements</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <div class="step-title">Implementation</div>
-                <p>Professional installation and commissioning</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">5</div>
-                <div class="step-title">Support</div>
-                <p>Ongoing maintenance and optimization</p>
-            </div>
-        </div>
-    </section>
+  <!-- Headline -->
+  <h1 class="hero-title font-display font-extrabold text-6xl md:text-8xl text-white leading-none mb-6 max-w-5xl" style="letter-spacing:-2px;">
+    Fuel the Planet<br/>
+    <span class="text-gradient">With What It<br/>Feeds On.</span>
+  </h1>
 
-    <section class="leadership" id="leadership">
-        <h2>Our Leadership</h2>
-        <div class="leadership-grid">
-            <div class="leader-card">
-                <div class="leader-avatar">BM</div>
-                <h3>Mr. Bokang Masango</h3>
-                <p class="role">Chief Executive Officer</p>
-                <p>3 years of experience in the biogas field</p>
-            </div>
-            <div class="leader-card">
-                <div class="leader-avatar">LM</div>
-                <h3>Mr. Lucky Motshele</h3>
-                <p class="role">Chief Operations Officer</p>
-                <p>4 years of experience in wastewater management</p>
-            </div>
-            <div class="leader-card">
-                <div class="leader-avatar">NN</div>
-                <h3>Ms. Nhlanhla Nyambose</h3>
-                <p class="role">Chief Financial Officer</p>
-                <p>Over 3 years of experience in financial management</p>
-            </div>
-        </div>
-    </section>
+  <p class="font-body text-white/70 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+    Africa's pioneering biogas company — transforming organic waste into clean, powerful energy through anaerobic digestion technology built for our continent.
+  </p>
 
-    <section class="testimonials">
-        <h2>What Our Clients Say</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    African Green Solutions transformed our farm's waste management. We now generate our own energy and have reduced our electricity costs by 60%.
+  <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+    <a href="contact.html" class="btn-glow px-8 py-4 rounded-full font-display font-bold text-white text-base">
+      Start Your Project →
+    </a>
+    <a href="#about" class="btn-ghost px-8 py-4 rounded-full font-display font-semibold text-white text-base">
+      Discover How It Works
+    </a>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+    <span class="font-body text-xs text-white tracking-widest uppercase">Scroll</span>
+    <div style="width:1px;height:40px;background:linear-gradient(to bottom,#2db84a,transparent);"></div>
+  </div>
+</section>
+
+<!-- ░░░ MARQUEE STRIP ░░░ -->
+<div style="background:linear-gradient(90deg,#1e9e38,#177d2b);" class="py-4 overflow-hidden">
+  <div class="marquee-wrap">
+    <div class="marquee-inner">
+      <template id="marq-items">
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Biogas Production
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Anaerobic Digestors
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Waste-to-Energy
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Organic Fertilizer
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Renewable Future
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Vaal, Gauteng
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Zero Carbon
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Biogas Production
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Anaerobic Digestors
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Waste-to-Energy
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Organic Fertilizer
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Renewable Future
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Vaal, Gauteng
+        </span>
+        <span class="inline-flex items-center gap-3 mx-8 font-display text-sm font-semibold text-white/90 tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span> Zero Carbon
+        </span>
+      </template>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ STATS ░░░ -->
+<section class="mesh-bg py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="stat-card rounded-2xl p-8 text-center reveal">
+        <div class="font-display font-extrabold text-5xl text-leaf-400 mb-2" data-count="50" data-suffix="+">0</div>
+        <div class="font-body text-white/60 text-sm leading-snug">Projects Completed</div>
+      </div>
+      <div class="stat-card rounded-2xl p-8 text-center reveal" style="transition-delay:0.1s">
+        <div class="font-display font-extrabold text-5xl text-leaf-400 mb-2" data-count="25" data-suffix="T">0</div>
+        <div class="font-body text-white/60 text-sm leading-snug">Tons Processed Daily</div>
+      </div>
+      <div class="stat-card rounded-2xl p-8 text-center reveal" style="transition-delay:0.2s">
+        <div class="font-display font-extrabold text-5xl text-amber-400 mb-2" data-count="10000" data-suffix="+">0</div>
+        <div class="font-body text-white/60 text-sm leading-snug">Homes Powered</div>
+      </div>
+      <div class="stat-card rounded-2xl p-8 text-center reveal" style="transition-delay:0.3s">
+        <div class="font-display font-extrabold text-5xl text-amber-400 mb-2" data-count="15" data-suffix="yr">0</div>
+        <div class="font-body text-white/60 text-sm leading-snug">Combined Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ ABOUT ░░░ -->
+<section id="about" class="py-24 px-6" style="background:#07200f;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <!-- Text -->
+      <div class="reveal">
+        <p class="font-body text-leaf-400 text-sm font-semibold tracking-widest uppercase mb-4">Who We Are</p>
+        <h2 class="font-display font-extrabold text-5xl md:text-6xl text-white leading-tight mb-6" style="letter-spacing:-1.5px;">
+          Turning Waste<br/>into <span class="text-gradient">Power.</span>
+        </h2>
+        <p class="font-body text-white/65 text-base leading-relaxed mb-5">
+          African Green Solutions is a pioneering renewable energy company specializing in the manufacturing and installation of anaerobic digestors for biogas production, based in Vaal, Gauteng.
+        </p>
+        <p class="font-body text-white/65 text-base leading-relaxed mb-8">
+          We are a proudly South African company committed to creating a cleaner and greener future. Every project we deliver transforms organic waste into clean energy — addressing Africa's growing demand for sustainable power while solving critical waste management challenges.
+        </p>
+
+        <!-- Biogas explainer glass card -->
+        <div class="glass-leaf rounded-2xl p-6 mb-8">
+          <h3 class="font-display font-bold text-leaf-300 text-lg mb-3">What Is Biogas?</h3>
+          <p class="font-body text-white/65 text-sm leading-relaxed">
+            Produced through anaerobic digestion of organic matter — food waste, agricultural waste, animal manure — in oxygen-free conditions. Microorganisms break down waste inside a sealed digester, releasing methane-rich gas harnessed for heating, cooking, and electricity generation.
+          </p>
+        </div>
+
+        <a href="about.html" class="btn-glow inline-block px-7 py-3.5 rounded-full font-display font-bold text-white text-sm">Read Our Full Story →</a>
+      </div>
+
+      <!-- Image panel -->
+      <div class="reveal relative" style="transition-delay:0.2s;">
+        <div class="about-img rounded-3xl overflow-hidden" style="height:520px; position:relative;">
+          <div class="absolute inset-0 flex flex-col justify-end p-8">
+            <div class="glass rounded-2xl p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-full bg-leaf-400/20 border border-leaf-400/30 flex items-center justify-center text-xl">🌱</div>
+                <div>
+                  <p class="font-display font-bold text-white text-sm">Clean Energy, Clean Future</p>
+                  <p class="font-body text-white/60 text-xs">Vaal, Gauteng, South Africa</p>
                 </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">JM</div>
-                    <div class="author-info">
-                        <h4>John Mbeki</h4>
-                        <p>Farm Owner, Limpopo</p>
-                    </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="flex-1 bg-white/10 rounded-xl p-3 text-center">
+                  <p class="font-display font-bold text-leaf-400 text-xl">60%</p>
+                  <p class="font-body text-white/60 text-xs">Avg. cost savings</p>
                 </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    The biogas facility constructed by African Green Solutions has helped our municipality reduce landfill waste while providing clean energy to our community.
+                <div class="flex-1 bg-white/10 rounded-xl p-3 text-center">
+                  <p class="font-display font-bold text-amber-400 text-xl">Zero</p>
+                  <p class="font-body text-white/60 text-xs">Landfill waste</p>
                 </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">SN</div>
-                    <div class="author-info">
-                        <h4>Sarah Nkosi</h4>
-                        <p>Municipal Manager, Gauteng</p>
-                    </div>
+                <div class="flex-1 bg-white/10 rounded-xl p-3 text-center">
+                  <p class="font-display font-bold text-leaf-300 text-xl">100%</p>
+                  <p class="font-body text-white/60 text-xs">Renewable</p>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+        <!-- Floating decorative blob -->
+        <div class="blob absolute -top-8 -right-8 w-40 h-40 animate-float-slow" style="background:radial-gradient(circle,rgba(45,184,74,0.25),transparent);border:1px solid rgba(45,184,74,0.2);"></div>
+        <div class="blob-2 absolute -bottom-6 -left-6 w-24 h-24 animate-float" style="background:radial-gradient(circle,rgba(245,184,0,0.2),transparent);border:1px solid rgba(245,184,0,0.2);animation-delay:2s;"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="contact" id="contact">
-        <h2>Get In Touch</h2>
-        <p>Ready to power a greener future? Contact us today to discuss your biogas project!</p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <div class="contact-icon">📞</div>
-                <h3>Phone</h3>
-                <p>083 892 4162</p>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <h3>Email</h3>
-                <p>africangreensolutions@gmail.com</p>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">📍</div>
-                <h3>Address</h3>
-                <p>252 Wellington Street<br>Ironside, Gauteng<br>1984</p>
-            </div>
+<!-- ░░░ SERVICES ░░░ -->
+<section id="services" class="services-section py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-body text-leaf-400 text-sm font-semibold tracking-widest uppercase mb-4">What We Do</p>
+      <h2 class="font-display font-extrabold text-5xl md:text-6xl text-white mb-6" style="letter-spacing:-1.5px;">
+        End-to-End<br/><span class="text-gradient">Biogas Solutions</span>
+      </h2>
+      <p class="font-body text-white/60 max-w-xl mx-auto">From initial feasibility to long-term maintenance, we handle every stage of your biogas journey.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <!-- Card 1 - Wide -->
+      <div class="md:col-span-2 service-card rounded-3xl p-10 reveal">
+        <div class="service-icon-wrap text-5xl mb-6 inline-block">🏗️</div>
+        <h3 class="font-display font-bold text-2xl text-white mb-3">Anaerobic Digestor Design & Installation</h3>
+        <p class="font-body text-white/60 leading-relaxed">Custom-engineered digestors precisely tailored to your waste streams, site conditions, and energy requirements — from concept through commissioning.</p>
+        <a href="services.html" class="inline-flex items-center gap-2 mt-6 text-leaf-400 font-display font-semibold text-sm hover:text-leaf-300 transition-colors group">
+          Learn More <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card rounded-3xl p-10 reveal" style="transition-delay:0.1s">
+        <div class="service-icon-wrap text-5xl mb-6 inline-block">📊</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Pre-construction Feasibility Studies</h3>
+        <p class="font-body text-white/60 leading-relaxed text-sm">Data-driven analysis to determine viability, scale, and ROI before a single brick is laid.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Card 3 -->
+      <div class="service-card rounded-3xl p-10 reveal" style="transition-delay:0.15s">
+        <div class="service-icon-wrap text-5xl mb-6 inline-block">🔧</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Maintenance & Optimisation</h3>
+        <p class="font-body text-white/60 leading-relaxed text-sm">Comprehensive ongoing maintenance ensuring peak performance and maximum biogas yield.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card rounded-3xl p-10 reveal" style="transition-delay:0.2s">
+        <div class="service-icon-wrap text-5xl mb-6 inline-block">🏭</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Biogas Facility Construction</h3>
+        <p class="font-body text-white/60 leading-relaxed text-sm">End-to-end construction of complete biogas production facilities at any scale.</p>
+      </div>
+
+      <!-- Card 5 - Amber accent -->
+      <div class="service-card rounded-3xl p-10 reveal" style="transition-delay:0.25s; border-color:rgba(245,184,0,0.15);">
+        <div class="service-icon-wrap text-5xl mb-6 inline-block">⚡</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Biogas & Fertilizer Supply</h3>
+        <p class="font-body text-white/60 leading-relaxed text-sm">Clean energy supply and premium organic bio-fertilizer as valuable by-products.</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="services.html" class="btn-glow inline-block px-8 py-4 rounded-full font-display font-bold text-white">View All Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ BENEFITS ░░░ -->
+<section id="benefits" class="py-28 px-6 mesh-bg-2">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-body text-amber-400 text-sm font-semibold tracking-widest uppercase mb-4">Why Biogas</p>
+      <h2 class="font-display font-extrabold text-5xl md:text-6xl text-white" style="letter-spacing:-1.5px;">
+        The Power of<br/><span class="text-gradient">Organic Energy</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="benefit-card rounded-2xl p-8 reveal">
+        <span class="benefit-num">01</span>
+        <div class="text-4xl mb-4">♻️</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">100% Renewable</h3>
+        <p class="font-body text-white/60 text-sm leading-relaxed">A completely sustainable energy source derived from nature's own cycles — never depleted.</p>
+      </div>
+      <div class="benefit-card rounded-2xl p-8 reveal" style="transition-delay:0.1s">
+        <span class="benefit-num">02</span>
+        <div class="text-4xl mb-4">🌍</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Reduces Emissions</h3>
+        <p class="font-body text-white/60 text-sm leading-relaxed">Captures methane before it enters the atmosphere, dramatically cutting greenhouse gas output.</p>
+      </div>
+      <div class="benefit-card rounded-2xl p-8 reveal" style="transition-delay:0.2s">
+        <span class="benefit-num">03</span>
+        <div class="text-4xl mb-4">💨</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Clean Alternative</h3>
+        <p class="font-body text-white/60 text-sm leading-relaxed">Replaces fossil fuels for cooking, heating, and power generation with zero toxic byproducts.</p>
+      </div>
+      <div class="benefit-card rounded-2xl p-8 reveal" style="transition-delay:0.3s">
+        <span class="benefit-num">04</span>
+        <div class="text-4xl mb-4">🔄</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Waste to Value</h3>
+        <p class="font-body text-white/60 text-sm leading-relaxed">Every kilogram of organic waste becomes either clean energy or premium bio-fertilizer.</p>
+      </div>
+      <div class="benefit-card rounded-2xl p-8 reveal" style="transition-delay:0.35s">
+        <span class="benefit-num">05</span>
+        <div class="text-4xl mb-4">🌿</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Environmental Conservation</h3>
+        <p class="font-body text-white/60 text-sm leading-relaxed">Diverts organic waste from landfill, reducing leachate and methane leakage at source.</p>
+      </div>
+      <div class="benefit-card rounded-2xl p-8 reveal" style="transition-delay:0.4s; border-color:rgba(245,184,0,0.2);">
+        <span class="benefit-num" style="color:rgba(245,184,0,0.15);">06</span>
+        <div class="text-4xl mb-4">⚡</div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">Energy Independence</h3>
+        <p class="font-body text-white/60 text-sm leading-relaxed">On-site power generation insulates communities and businesses from grid failures and price spikes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ PROCESS ░░░ -->
+<section id="process" style="background:#07200f;" class="py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-20 reveal">
+      <p class="font-body text-leaf-400 text-sm font-semibold tracking-widest uppercase mb-4">How It Works</p>
+      <h2 class="font-display font-extrabold text-5xl md:text-6xl text-white" style="letter-spacing:-1.5px;">
+        Our <span class="text-gradient">Process</span>
+      </h2>
+    </div>
+
+    <div class="process-line grid grid-cols-5 gap-4 reveal">
+      <div class="text-center group">
+        <div class="process-dot rounded-full mx-auto flex items-center justify-center font-display font-bold text-white text-lg mb-5 cursor-pointer">1</div>
+        <p class="font-display font-bold text-white text-sm mb-2">Consultation</p>
+        <p class="font-body text-white/50 text-xs leading-snug">We assess your needs & waste streams</p>
+      </div>
+      <div class="text-center group">
+        <div class="process-dot rounded-full mx-auto flex items-center justify-center font-display font-bold text-white text-lg mb-5 cursor-pointer">2</div>
+        <p class="font-display font-bold text-white text-sm mb-2">Feasibility</p>
+        <p class="font-body text-white/50 text-xs leading-snug">Data analysis & project viability</p>
+      </div>
+      <div class="text-center group">
+        <div class="process-dot rounded-full mx-auto flex items-center justify-center font-display font-bold text-white text-lg mb-5 cursor-pointer">3</div>
+        <p class="font-display font-bold text-white text-sm mb-2">Design</p>
+        <p class="font-body text-white/50 text-xs leading-snug">Custom solution engineering</p>
+      </div>
+      <div class="text-center group">
+        <div class="process-dot rounded-full mx-auto flex items-center justify-center font-display font-bold text-white text-lg mb-5 cursor-pointer">4</div>
+        <p class="font-display font-bold text-white text-sm mb-2">Build</p>
+        <p class="font-body text-white/50 text-xs leading-snug">Professional installation</p>
+      </div>
+      <div class="text-center group">
+        <div class="process-dot rounded-full mx-auto flex items-center justify-center font-display font-bold text-white text-lg mb-5 cursor-pointer">5</div>
+        <p class="font-display font-bold text-white text-sm mb-2">Support</p>
+        <p class="font-body text-white/50 text-xs leading-snug">Ongoing maintenance & optimisation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ LEADERSHIP ░░░ -->
+<section id="leadership" class="py-28 px-6 mesh-bg">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-body text-leaf-400 text-sm font-semibold tracking-widest uppercase mb-4">The Team</p>
+      <h2 class="font-display font-extrabold text-5xl md:text-6xl text-white" style="letter-spacing:-1.5px;">
+        Our <span class="text-gradient">Leadership</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="leader-card rounded-3xl p-8 text-center reveal">
+        <div class="avatar w-20 h-20 rounded-full bg-gradient-to-br from-leaf-500 to-leaf-700 flex items-center justify-center font-display font-bold text-white text-2xl mx-auto mb-6">BM</div>
+        <h3 class="font-display font-bold text-white text-xl mb-1">Mr. Bokang Masango</h3>
+        <p class="font-body text-leaf-400 text-sm font-semibold mb-3">Chief Executive Officer</p>
+        <p class="font-body text-white/55 text-sm">3 years of specialized experience in the biogas field driving Africa's energy transition.</p>
+      </div>
+      <div class="leader-card rounded-3xl p-8 text-center reveal" style="transition-delay:0.1s">
+        <div class="avatar w-20 h-20 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-display font-bold text-white text-2xl mx-auto mb-6">LM</div>
+        <h3 class="font-display font-bold text-white text-xl mb-1">Mr. Lucky Motshele</h3>
+        <p class="font-body text-amber-400 text-sm font-semibold mb-3">Chief Operations Officer</p>
+        <p class="font-body text-white/55 text-sm">4 years of expertise in wastewater management and operational excellence.</p>
+      </div>
+      <div class="leader-card rounded-3xl p-8 text-center reveal" style="transition-delay:0.2s">
+        <div class="avatar w-20 h-20 rounded-full bg-gradient-to-br from-leaf-400 to-amber-500 flex items-center justify-center font-display font-bold text-white text-2xl mx-auto mb-6">NN</div>
+        <h3 class="font-display font-bold text-white text-xl mb-1">Ms. Nhlanhla Nyambose</h3>
+        <p class="font-body text-leaf-400 text-sm font-semibold mb-3">Chief Financial Officer</p>
+        <p class="font-body text-white/55 text-sm">Over 3 years of financial management experience ensuring sustainable growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ TESTIMONIALS ░░░ -->
+<section class="py-28 px-6" style="background:#07200f;">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-body text-leaf-400 text-sm font-semibold tracking-widest uppercase mb-4">Client Stories</p>
+      <h2 class="font-display font-extrabold text-5xl md:text-6xl text-white" style="letter-spacing:-1.5px;">
+        What Our<br/><span class="text-gradient">Clients Say</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="testi-card rounded-3xl p-10 reveal">
+        <div class="font-display text-6xl text-leaf-400/30 leading-none mb-4">"</div>
+        <p class="font-body text-white/75 text-base leading-relaxed mb-8">
+          African Green Solutions transformed our farm's waste management entirely. We now generate our own energy and have reduced our electricity costs by 60%. Truly remarkable technology.
+        </p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-leaf-500 to-amber-500 flex items-center justify-center font-display font-bold text-white text-sm">JM</div>
+          <div>
+            <p class="font-display font-bold text-white text-sm">John Mbeki</p>
+            <p class="font-body text-white/50 text-xs">Farm Owner · Limpopo</p>
+          </div>
+          <div class="ml-auto flex gap-1">
+            <span class="text-amber-400 text-sm">★★★★★</span>
+          </div>
         </div>
-        <a href="contact.html" class="cta-button" style="margin-top: 2rem;">Contact Us Now</a>
-    </section>
+      </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <span class="logo-icon"></span><a><img src="assets/AfricanGreenLogo.png" width="80" height="80"></a>
-                <p>Pioneering renewable energy solutions for a sustainable African future through innovative biogas technology.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="services.html">Digestor Design & Installation</a></li>
-                    <li><a href="services.html">Maintenance Services</a></li>
-                    <li><a href="services.html">Feasibility Studies</a></li>
-                    <li><a href="services.html">Biogas Supply</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <ul class="footer-links">
-                    <li>📞 083 892 4162</li>
-                    <li>📧 africangreensolutions@gmail.com</li>
-                    <li>📍 252 Wellington Street, Ironside, Gauteng, 1984</li>
-                </ul>
-            </div>
+      <div class="testi-card rounded-3xl p-10 reveal" style="transition-delay:0.15s">
+        <div class="font-display text-6xl text-amber-400/30 leading-none mb-4">"</div>
+        <p class="font-body text-white/75 text-base leading-relaxed mb-8">
+          The biogas facility has helped our municipality reduce landfill waste while providing clean energy to our entire community. An incredible win for all stakeholders.
+        </p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-leaf-500 flex items-center justify-center font-display font-bold text-white text-sm">SN</div>
+          <div>
+            <p class="font-display font-bold text-white text-sm">Sarah Nkosi</p>
+            <p class="font-body text-white/50 text-xs">Municipal Manager · Gauteng</p>
+          </div>
+          <div class="ml-auto flex gap-1">
+            <span class="text-amber-400 text-sm">★★★★★</span>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
-            <p>Powering a Greener Future</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CONTACT ░░░ -->
+<section id="contact" class="contact-section py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-body text-leaf-400 text-sm font-semibold tracking-widest uppercase mb-4">Let's Build Together</p>
+      <h2 class="font-display font-extrabold text-5xl md:text-6xl text-white mb-6" style="letter-spacing:-1.5px;">
+        Ready to Power a<br/><span class="text-gradient">Greener Future?</span>
+      </h2>
+      <p class="font-body text-white/60 max-w-xl mx-auto">Contact us today to discuss your biogas project. Our team is ready to guide you from concept to commissioning.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="glass rounded-3xl p-8 text-center reveal hover:bg-white/10 transition-all duration-300 hover:-translate-y-2">
+        <div class="w-14 h-14 rounded-2xl bg-leaf-400/15 border border-leaf-400/25 flex items-center justify-center text-2xl mx-auto mb-5">📞</div>
+        <h3 class="font-display font-bold text-white text-base mb-2">Phone</h3>
+        <p class="font-body text-leaf-300 text-sm">083 892 4162</p>
+      </div>
+      <div class="glass rounded-3xl p-8 text-center reveal hover:bg-white/10 transition-all duration-300 hover:-translate-y-2" style="transition-delay:0.1s">
+        <div class="w-14 h-14 rounded-2xl bg-amber-400/15 border border-amber-400/25 flex items-center justify-center text-2xl mx-auto mb-5">📧</div>
+        <h3 class="font-display font-bold text-white text-base mb-2">Email</h3>
+        <p class="font-body text-amber-300 text-sm">africangreensolutions@gmail.com</p>
+      </div>
+      <div class="glass rounded-3xl p-8 text-center reveal hover:bg-white/10 transition-all duration-300 hover:-translate-y-2" style="transition-delay:0.2s">
+        <div class="w-14 h-14 rounded-2xl bg-leaf-400/15 border border-leaf-400/25 flex items-center justify-center text-2xl mx-auto mb-5">📍</div>
+        <h3 class="font-display font-bold text-white text-base mb-2">Address</h3>
+        <p class="font-body text-white/60 text-sm">252 Wellington Street, Ironside<br/>Gauteng, 1984</p>
+      </div>
+    </div>
+
+    <div class="text-center reveal">
+      <a href="contact.html" class="btn-glow inline-block px-10 py-5 rounded-full font-display font-bold text-white text-lg">
+        Contact Us Now →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer style="background:#030f06; border-top:1px solid rgba(45,184,74,0.15);" class="py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-leaf-400 to-leaf-600 flex items-center justify-center text-sm font-display font-bold text-white">AG</div>
+          <span class="font-display font-bold text-white text-lg">African Green Solutions</span>
         </div>
-    </footer>
+        <p class="font-body text-white/50 text-sm leading-relaxed max-w-xs">Pioneering renewable energy solutions for a sustainable African future through innovative biogas technology.</p>
+        <p class="font-body text-leaf-400/60 text-xs mt-4 italic">Fuel the planet with what it feeds on.</p>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-white text-sm mb-5 tracking-wide">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">Home</a></li>
+          <li><a href="about.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">About Us</a></li>
+          <li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">Services</a></li>
+          <li><a href="contact.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-white text-sm mb-5 tracking-wide">Services</h4>
+        <ul class="space-y-3">
+          <li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">Digestor Design</a></li>
+          <li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">Maintenance</a></li>
+          <li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">Feasibility Studies</a></li>
+          <li><a href="services.html" class="font-body text-white/50 text-sm hover:text-leaf-400 transition-colors">Biogas Supply</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.07);" class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="font-body text-white/35 text-xs">© 2025 African Green Solutions (Pty) Ltd. All rights reserved.</p>
+      <p class="font-body text-leaf-400/50 text-xs">Powering a Greener Future</p>
+    </div>
+  </div>
+</footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
 
-        // Animated counter for stats
-        function animateCounter() {
-            const counters = document.querySelectorAll('.stat-number');
-            const speed = 200;
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-count');
-                const count = +counter.innerText;
-                const increment = target / speed;
-                
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(() => animateCounter(), 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
+  // Mobile menu
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
 
-        // Start counter animation when stats section is in view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => revealObserver.observe(r));
 
-        observer.observe(document.querySelector('.stats'));
+  // Animated counters
+  function animateCount(el) {
+    const target = +el.getAttribute('data-count');
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1800;
+    const start = performance.now();
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const val = Math.round(easeOut(t) * target);
+      el.textContent = val.toLocaleString() + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); counterObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
+  // Marquee duplication
+  const marqTemplate = document.getElementById('marq-items');
+  const marqInner = document.querySelector('.marquee-inner');
+  if (marqTemplate && marqInner) {
+    const content = marqTemplate.innerHTML;
+    marqInner.innerHTML = content + content;
+  }
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').style.display = 'none';
-                    }
-                }
-            });
-        });
-    </script>
+  // Smooth anchor scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
 </body>
 </html>
